@@ -5,23 +5,20 @@ option java_outer_classname = "TradingProto";
 
 message BaseMessage {
   enum Type {
-    ERROR   = 0;
-    RESET   = 1;
-    EVENT   = 2;
-    LATENCY = 3;
+    ERROR       = 0;
+    ORDER_EVENT = 1;
   }
 
-  Type    type    = 1;
-  Error   error   = 2;
-  Event   event   = 3;
-  Latency latency = 4;
+  Type       type       = 1;
+  Error      error      = 2;
+  OrderEvent orderEvent = 3;
 }
 
 message Error {
   string message = 1;
 }
 
-message Event {
+message OrderEvent {
 
   enum Type {
     OPEN   = 0;
@@ -39,9 +36,4 @@ message Event {
   Side   side    = 3;
   int64  price   = 4;
   int64  size    = 5;
-}
-
-message Latency {
-  int64 mod         = 1;
-  int64 nanoseconds = 2;
 }
