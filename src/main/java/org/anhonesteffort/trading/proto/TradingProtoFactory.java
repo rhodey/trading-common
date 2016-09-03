@@ -32,6 +32,18 @@ public class TradingProtoFactory {
         .build();
   }
 
+  public BaseMessage syncStart() {
+    return BaseMessage.newBuilder()
+        .setType(BaseMessage.Type.SYNC_START)
+        .build();
+  }
+
+  public BaseMessage syncEnd() {
+    return BaseMessage.newBuilder()
+        .setType(BaseMessage.Type.SYNC_END)
+        .build();
+  }
+
   private TradingProto.OrderEvent.Type typeFor(OrderEvent.Type type) {
     if (type == OrderEvent.Type.OPEN) {
       return TradingProto.OrderEvent.Type.OPEN;
@@ -61,6 +73,13 @@ public class TradingProtoFactory {
                 .setSize(event.getSize())
                 .build()
         ).build();
+  }
+
+  public BaseMessage latency(String name, Long nanoseconds) {
+    return BaseMessage.newBuilder()
+        .setType(BaseMessage.Type.LATENCY)
+        .setLatency(TradingProto.Latency.newBuilder().setName(name).setAvgNs(nanoseconds))
+        .build();
   }
 
 }
