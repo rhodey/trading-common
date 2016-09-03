@@ -15,24 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.anhonesteffort.btc.util;
+package org.anhonesteffort.trading.http;
 
-public class LongCaster {
+public class HttpException extends Exception {
 
-  private final double precision;
-  private final double accuracy;
-
-  public LongCaster(double precision, double accuracy) {
-    this.precision = precision;
-    this.accuracy  = accuracy;
+  public HttpException(String message) {
+    super(message);
   }
 
-  public long fromDouble(double value) {
-    return (long) (value / precision);
-  }
-
-  public double toDouble(long value) {
-    return Math.round((value * precision) * accuracy) / accuracy;
+  public HttpException(String message, Throwable cause) {
+    super(message, cause);
   }
 
 }

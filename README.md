@@ -7,6 +7,11 @@ common package for trading fun.
 $ mvn install
 ```
 
+## Development
+```
+$ build-proto.sh
+```
+
 ## License
 
 Copyright 2016 An Honest Effort LLC

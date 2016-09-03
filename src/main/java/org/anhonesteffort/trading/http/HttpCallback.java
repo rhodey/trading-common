@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.anhonesteffort.btc.http;
+package org.anhonesteffort.trading.http;
 
 import okhttp3.Call;
 import okhttp3.Callback;

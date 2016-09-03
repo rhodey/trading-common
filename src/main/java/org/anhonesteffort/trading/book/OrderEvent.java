@@ -1,4 +1,4 @@
-package org.anhonesteffort.btc.book;
+package org.anhonesteffort.trading.book;
 
 import java.io.Externalizable;
 import java.io.IOException;

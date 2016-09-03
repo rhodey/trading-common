@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.anhonesteffort.btc.util;
+package org.anhonesteffort.trading.util;
 
 import org.junit.Test;
 
