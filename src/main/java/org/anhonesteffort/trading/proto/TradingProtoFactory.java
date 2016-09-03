@@ -32,25 +32,17 @@ public class TradingProtoFactory {
         .build();
   }
 
-  public BaseMessage syncStart() {
-    return BaseMessage.newBuilder()
-        .setType(BaseMessage.Type.SYNC_START)
-        .build();
-  }
-
-  public BaseMessage syncEnd() {
-    return BaseMessage.newBuilder()
-        .setType(BaseMessage.Type.SYNC_END)
-        .build();
-  }
-
   private TradingProto.OrderEvent.Type typeFor(OrderEvent.Type type) {
     if (type == OrderEvent.Type.OPEN) {
       return TradingProto.OrderEvent.Type.OPEN;
     } else if (type == OrderEvent.Type.TAKE) {
       return TradingProto.OrderEvent.Type.TAKE;
-    } else {
+    } else if (type == OrderEvent.Type.REDUCE) {
       return TradingProto.OrderEvent.Type.REDUCE;
+    } else if (type == OrderEvent.Type.SYNC_START) {
+      return TradingProto.OrderEvent.Type.SYNC_START;
+    } else {
+      return TradingProto.OrderEvent.Type.SYNC_END;
     }
   }
 

@@ -184,21 +184,13 @@ public final class TradingProto {
        */
       ERROR(0),
       /**
-       * <code>SYNC_START = 1;</code>
+       * <code>ORDER_EVENT = 1;</code>
        */
-      SYNC_START(1),
+      ORDER_EVENT(1),
       /**
-       * <code>SYNC_END = 2;</code>
+       * <code>LATENCY = 2;</code>
        */
-      SYNC_END(2),
-      /**
-       * <code>ORDER_EVENT = 3;</code>
-       */
-      ORDER_EVENT(3),
-      /**
-       * <code>LATENCY = 4;</code>
-       */
-      LATENCY(4),
+      LATENCY(2),
       UNRECOGNIZED(-1),
       ;
 
@@ -207,21 +199,13 @@ public final class TradingProto {
        */
       public static final int ERROR_VALUE = 0;
       /**
-       * <code>SYNC_START = 1;</code>
+       * <code>ORDER_EVENT = 1;</code>
        */
-      public static final int SYNC_START_VALUE = 1;
+      public static final int ORDER_EVENT_VALUE = 1;
       /**
-       * <code>SYNC_END = 2;</code>
+       * <code>LATENCY = 2;</code>
        */
-      public static final int SYNC_END_VALUE = 2;
-      /**
-       * <code>ORDER_EVENT = 3;</code>
-       */
-      public static final int ORDER_EVENT_VALUE = 3;
-      /**
-       * <code>LATENCY = 4;</code>
-       */
-      public static final int LATENCY_VALUE = 4;
+      public static final int LATENCY_VALUE = 2;
 
 
       public final int getNumber() {
@@ -243,10 +227,8 @@ public final class TradingProto {
       public static Type forNumber(int value) {
         switch (value) {
           case 0: return ERROR;
-          case 1: return SYNC_START;
-          case 2: return SYNC_END;
-          case 3: return ORDER_EVENT;
-          case 4: return LATENCY;
+          case 1: return ORDER_EVENT;
+          case 2: return LATENCY;
           default: return null;
         }
       }
@@ -1836,6 +1818,14 @@ public final class TradingProto {
        * <code>REDUCE = 2;</code>
        */
       REDUCE(2),
+      /**
+       * <code>SYNC_START = 3;</code>
+       */
+      SYNC_START(3),
+      /**
+       * <code>SYNC_END = 4;</code>
+       */
+      SYNC_END(4),
       UNRECOGNIZED(-1),
       ;
 
@@ -1851,6 +1841,14 @@ public final class TradingProto {
        * <code>REDUCE = 2;</code>
        */
       public static final int REDUCE_VALUE = 2;
+      /**
+       * <code>SYNC_START = 3;</code>
+       */
+      public static final int SYNC_START_VALUE = 3;
+      /**
+       * <code>SYNC_END = 4;</code>
+       */
+      public static final int SYNC_END_VALUE = 4;
 
 
       public final int getNumber() {
@@ -1874,6 +1872,8 @@ public final class TradingProto {
           case 0: return OPEN;
           case 1: return TAKE;
           case 2: return REDUCE;
+          case 3: return SYNC_START;
+          case 4: return SYNC_END;
           default: return null;
         }
       }
@@ -3298,17 +3298,17 @@ public final class TradingProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rtrading.proto\"\320\001\n\013BaseMessage\022\037\n\004type\030" +
+      "\n\rtrading.proto\"\262\001\n\013BaseMessage\022\037\n\004type\030" +
       "\001 \001(\0162\021.BaseMessage.Type\022\025\n\005error\030\002 \001(\0132" +
       "\006.Error\022\037\n\norderEvent\030\003 \001(\0132\013.OrderEvent" +
-      "\022\031\n\007latency\030\004 \001(\0132\010.Latency\"M\n\004Type\022\t\n\005E" +
-      "RROR\020\000\022\016\n\nSYNC_START\020\001\022\014\n\010SYNC_END\020\002\022\017\n\013" +
-      "ORDER_EVENT\020\003\022\013\n\007LATENCY\020\004\"\030\n\005Error\022\017\n\007m" +
-      "essage\030\001 \001(\t\"\274\001\n\nOrderEvent\022\036\n\004type\030\001 \001(" +
-      "\0162\020.OrderEvent.Type\022\017\n\007orderId\030\002 \001(\t\022\036\n\004" +
-      "side\030\003 \001(\0162\020.OrderEvent.Side\022\r\n\005price\030\004 " +
-      "\001(\003\022\014\n\004size\030\005 \001(\003\"&\n\004Type\022\010\n\004OPEN\020\000\022\010\n\004T",
-      "AKE\020\001\022\n\n\006REDUCE\020\002\"\030\n\004Side\022\007\n\003ASK\020\000\022\007\n\003BI" +
+      "\022\031\n\007latency\030\004 \001(\0132\010.Latency\"/\n\004Type\022\t\n\005E" +
+      "RROR\020\000\022\017\n\013ORDER_EVENT\020\001\022\013\n\007LATENCY\020\002\"\030\n\005" +
+      "Error\022\017\n\007message\030\001 \001(\t\"\332\001\n\nOrderEvent\022\036\n" +
+      "\004type\030\001 \001(\0162\020.OrderEvent.Type\022\017\n\007orderId" +
+      "\030\002 \001(\t\022\036\n\004side\030\003 \001(\0162\020.OrderEvent.Side\022\r" +
+      "\n\005price\030\004 \001(\003\022\014\n\004size\030\005 \001(\003\"D\n\004Type\022\010\n\004O" +
+      "PEN\020\000\022\010\n\004TAKE\020\001\022\n\n\006REDUCE\020\002\022\016\n\nSYNC_STAR",
+      "T\020\003\022\014\n\010SYNC_END\020\004\"\030\n\004Side\022\007\n\003ASK\020\000\022\007\n\003BI" +
       "D\020\001\"&\n\007Latency\022\014\n\004name\030\001 \001(\t\022\r\n\005avgNs\030\002 " +
       "\001(\003B0\n org.anhonesteffort.trading.protoB" +
       "\014TradingProtob\006proto3"

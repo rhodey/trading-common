@@ -8,7 +8,7 @@ import java.io.ObjectOutput;
 public class OrderEvent implements Externalizable {
 
   public enum Type {
-    OPEN, TAKE, REDUCE
+    OPEN, TAKE, REDUCE, SYNC_START, SYNC_END
   }
 
   protected Type type;
@@ -41,6 +41,14 @@ public class OrderEvent implements Externalizable {
 
   public static OrderEvent cancel(Order order) {
     return new OrderEvent(Type.REDUCE, order.getOrderId(), order.getSide(), order.getPrice(), order.getSize());
+  }
+
+  public static OrderEvent syncStart() {
+    return new OrderEvent(Type.SYNC_START, "", Order.Side.ASK, -1l, -1l);
+  }
+
+  public static OrderEvent syncEnd() {
+    return new OrderEvent(Type.SYNC_END, "", Order.Side.ASK, -1l, -1l);
   }
 
   public Type getType() {
@@ -77,6 +85,14 @@ public class OrderEvent implements Externalizable {
       case REDUCE:
         out.writeInt(2);
         break;
+
+      case SYNC_START:
+        out.writeInt(3);
+        break;
+
+      case SYNC_END:
+        out.writeInt(4);
+        break;
     }
 
     out.writeUTF(orderId);
@@ -98,6 +114,14 @@ public class OrderEvent implements Externalizable {
 
       case 2:
         type = Type.REDUCE;
+        break;
+
+      case 3:
+        type = Type.SYNC_START;
+        break;
+
+      case 4:
+        type = Type.SYNC_END;
         break;
     }
 
