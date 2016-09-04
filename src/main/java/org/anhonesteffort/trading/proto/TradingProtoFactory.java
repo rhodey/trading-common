@@ -20,6 +20,9 @@ package org.anhonesteffort.trading.proto;
 import org.anhonesteffort.trading.book.Order;
 import org.anhonesteffort.trading.book.OrderEvent;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.anhonesteffort.trading.proto.TradingProto.BaseMessage;
 import static org.anhonesteffort.trading.proto.TradingProto.Error;
 
@@ -54,17 +57,38 @@ public class TradingProtoFactory {
     }
   }
 
+  private TradingProto.OrderEvent.Builder orderEventBuilder(OrderEvent event) {
+    return TradingProto.OrderEvent.newBuilder()
+        .setType(typeFor(event.getType()))
+        .setTimeMs(event.getTimeMs())
+        .setTimeNs(event.getTimeNs())
+        .setOrderId(event.getOrderId())
+        .setSide(sideFor(event.getSide()))
+        .setPrice(event.getPrice())
+        .setSize(event.getSize());
+  }
+
   public BaseMessage orderEvent(OrderEvent event) {
     return BaseMessage.newBuilder()
         .setType(BaseMessage.Type.ORDER_EVENT)
-        .setOrderEvent(TradingProto.OrderEvent.newBuilder()
-                .setType(typeFor(event.getType()))
-                .setTimeMs(event.getTimeMs())
-                .setTimeNs(event.getTimeNs())
-                .setOrderId(event.getOrderId())
-                .setSide(sideFor(event.getSide()))
-                .setPrice(event.getPrice())
-                .setSize(event.getSize())
+        .setOrderEvent(orderEventBuilder(event))
+        .build();
+  }
+
+  private TradingProto.Label label(Label label) {
+    return TradingProto.Label.newBuilder()
+        .setName(label.getName())
+        .setValue(label.getValue())
+        .build();
+  }
+
+  public BaseMessage labeledOrderEvent(OrderEvent event, List<Label> labels) {
+    return BaseMessage.newBuilder()
+        .setType(BaseMessage.Type.LABELED_ORDER_EVENT)
+        .setLabeledOrderEvent(
+            TradingProto.LabeledOrderEvent.newBuilder()
+                .setOrderEvent(orderEventBuilder(event))
+                .addAllLabels(labels.stream().map(this::label).collect(Collectors.toList()))
                 .build()
         ).build();
   }

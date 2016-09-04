@@ -5,13 +5,15 @@ option java_outer_classname = "TradingProto";
 
 message BaseMessage {
   enum Type {
-    ERROR       = 0;
-    ORDER_EVENT = 1;
+    ERROR               = 0;
+    ORDER_EVENT         = 1;
+    LABELED_ORDER_EVENT = 2;
   }
 
-  Type       type       = 1;
-  Error      error      = 2;
-  OrderEvent orderEvent = 3;
+  Type              type              = 1;
+  Error             error             = 2;
+  OrderEvent        orderEvent        = 3;
+  LabeledOrderEvent labeledOrderEvent = 4;
 }
 
 message Error {
@@ -39,4 +41,14 @@ message OrderEvent {
   Side   side    = 5;
   int64  price   = 6;
   int64  size    = 7;
+}
+
+message Label {
+  string name  = 1;
+  int64  value = 2;
+}
+
+message LabeledOrderEvent {
+  OrderEvent orderEvent = 1;
+  repeated Label labels = 2;
 }

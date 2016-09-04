@@ -52,6 +52,19 @@ public final class TradingProto {
      * <code>optional .OrderEvent orderEvent = 3;</code>
      */
     org.anhonesteffort.trading.proto.TradingProto.OrderEventOrBuilder getOrderEventOrBuilder();
+
+    /**
+     * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+     */
+    boolean hasLabeledOrderEvent();
+    /**
+     * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+     */
+    org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent getLabeledOrderEvent();
+    /**
+     * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+     */
+    org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEventOrBuilder getLabeledOrderEventOrBuilder();
   }
   /**
    * Protobuf type {@code BaseMessage}
@@ -125,6 +138,19 @@ public final class TradingProto {
 
               break;
             }
+            case 34: {
+              org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.Builder subBuilder = null;
+              if (labeledOrderEvent_ != null) {
+                subBuilder = labeledOrderEvent_.toBuilder();
+              }
+              labeledOrderEvent_ = input.readMessage(org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(labeledOrderEvent_);
+                labeledOrderEvent_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -161,6 +187,10 @@ public final class TradingProto {
        * <code>ORDER_EVENT = 1;</code>
        */
       ORDER_EVENT(1),
+      /**
+       * <code>LABELED_ORDER_EVENT = 2;</code>
+       */
+      LABELED_ORDER_EVENT(2),
       UNRECOGNIZED(-1),
       ;
 
@@ -172,6 +202,10 @@ public final class TradingProto {
        * <code>ORDER_EVENT = 1;</code>
        */
       public static final int ORDER_EVENT_VALUE = 1;
+      /**
+       * <code>LABELED_ORDER_EVENT = 2;</code>
+       */
+      public static final int LABELED_ORDER_EVENT_VALUE = 2;
 
 
       public final int getNumber() {
@@ -194,6 +228,7 @@ public final class TradingProto {
         switch (value) {
           case 0: return ERROR;
           case 1: return ORDER_EVENT;
+          case 2: return LABELED_ORDER_EVENT;
           default: return null;
         }
       }
@@ -304,6 +339,27 @@ public final class TradingProto {
       return getOrderEvent();
     }
 
+    public static final int LABELEDORDEREVENT_FIELD_NUMBER = 4;
+    private org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent labeledOrderEvent_;
+    /**
+     * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+     */
+    public boolean hasLabeledOrderEvent() {
+      return labeledOrderEvent_ != null;
+    }
+    /**
+     * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+     */
+    public org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent getLabeledOrderEvent() {
+      return labeledOrderEvent_ == null ? org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.getDefaultInstance() : labeledOrderEvent_;
+    }
+    /**
+     * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+     */
+    public org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEventOrBuilder getLabeledOrderEventOrBuilder() {
+      return getLabeledOrderEvent();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -325,6 +381,9 @@ public final class TradingProto {
       if (orderEvent_ != null) {
         output.writeMessage(3, getOrderEvent());
       }
+      if (labeledOrderEvent_ != null) {
+        output.writeMessage(4, getLabeledOrderEvent());
+      }
     }
 
     public int getSerializedSize() {
@@ -343,6 +402,10 @@ public final class TradingProto {
       if (orderEvent_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getOrderEvent());
+      }
+      if (labeledOrderEvent_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getLabeledOrderEvent());
       }
       memoizedSize = size;
       return size;
@@ -371,6 +434,11 @@ public final class TradingProto {
         result = result && getOrderEvent()
             .equals(other.getOrderEvent());
       }
+      result = result && (hasLabeledOrderEvent() == other.hasLabeledOrderEvent());
+      if (hasLabeledOrderEvent()) {
+        result = result && getLabeledOrderEvent()
+            .equals(other.getLabeledOrderEvent());
+      }
       return result;
     }
 
@@ -390,6 +458,10 @@ public final class TradingProto {
       if (hasOrderEvent()) {
         hash = (37 * hash) + ORDEREVENT_FIELD_NUMBER;
         hash = (53 * hash) + getOrderEvent().hashCode();
+      }
+      if (hasLabeledOrderEvent()) {
+        hash = (37 * hash) + LABELEDORDEREVENT_FIELD_NUMBER;
+        hash = (53 * hash) + getLabeledOrderEvent().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -523,6 +595,12 @@ public final class TradingProto {
           orderEvent_ = null;
           orderEventBuilder_ = null;
         }
+        if (labeledOrderEventBuilder_ == null) {
+          labeledOrderEvent_ = null;
+        } else {
+          labeledOrderEvent_ = null;
+          labeledOrderEventBuilder_ = null;
+        }
         return this;
       }
 
@@ -555,6 +633,11 @@ public final class TradingProto {
           result.orderEvent_ = orderEvent_;
         } else {
           result.orderEvent_ = orderEventBuilder_.build();
+        }
+        if (labeledOrderEventBuilder_ == null) {
+          result.labeledOrderEvent_ = labeledOrderEvent_;
+        } else {
+          result.labeledOrderEvent_ = labeledOrderEventBuilder_.build();
         }
         onBuilt();
         return result;
@@ -605,6 +688,9 @@ public final class TradingProto {
         }
         if (other.hasOrderEvent()) {
           mergeOrderEvent(other.getOrderEvent());
+        }
+        if (other.hasLabeledOrderEvent()) {
+          mergeLabeledOrderEvent(other.getLabeledOrderEvent());
         }
         onChanged();
         return this;
@@ -908,6 +994,123 @@ public final class TradingProto {
           orderEvent_ = null;
         }
         return orderEventBuilder_;
+      }
+
+      private org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent labeledOrderEvent_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent, org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.Builder, org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEventOrBuilder> labeledOrderEventBuilder_;
+      /**
+       * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+       */
+      public boolean hasLabeledOrderEvent() {
+        return labeledOrderEventBuilder_ != null || labeledOrderEvent_ != null;
+      }
+      /**
+       * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+       */
+      public org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent getLabeledOrderEvent() {
+        if (labeledOrderEventBuilder_ == null) {
+          return labeledOrderEvent_ == null ? org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.getDefaultInstance() : labeledOrderEvent_;
+        } else {
+          return labeledOrderEventBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+       */
+      public Builder setLabeledOrderEvent(org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent value) {
+        if (labeledOrderEventBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          labeledOrderEvent_ = value;
+          onChanged();
+        } else {
+          labeledOrderEventBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+       */
+      public Builder setLabeledOrderEvent(
+          org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.Builder builderForValue) {
+        if (labeledOrderEventBuilder_ == null) {
+          labeledOrderEvent_ = builderForValue.build();
+          onChanged();
+        } else {
+          labeledOrderEventBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+       */
+      public Builder mergeLabeledOrderEvent(org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent value) {
+        if (labeledOrderEventBuilder_ == null) {
+          if (labeledOrderEvent_ != null) {
+            labeledOrderEvent_ =
+              org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.newBuilder(labeledOrderEvent_).mergeFrom(value).buildPartial();
+          } else {
+            labeledOrderEvent_ = value;
+          }
+          onChanged();
+        } else {
+          labeledOrderEventBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+       */
+      public Builder clearLabeledOrderEvent() {
+        if (labeledOrderEventBuilder_ == null) {
+          labeledOrderEvent_ = null;
+          onChanged();
+        } else {
+          labeledOrderEvent_ = null;
+          labeledOrderEventBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+       */
+      public org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.Builder getLabeledOrderEventBuilder() {
+        
+        onChanged();
+        return getLabeledOrderEventFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+       */
+      public org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEventOrBuilder getLabeledOrderEventOrBuilder() {
+        if (labeledOrderEventBuilder_ != null) {
+          return labeledOrderEventBuilder_.getMessageOrBuilder();
+        } else {
+          return labeledOrderEvent_ == null ?
+              org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.getDefaultInstance() : labeledOrderEvent_;
+        }
+      }
+      /**
+       * <code>optional .LabeledOrderEvent labeledOrderEvent = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent, org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.Builder, org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEventOrBuilder> 
+          getLabeledOrderEventFieldBuilder() {
+        if (labeledOrderEventBuilder_ == null) {
+          labeledOrderEventBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent, org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.Builder, org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEventOrBuilder>(
+                  getLabeledOrderEvent(),
+                  getParentForChildren(),
+                  isClean());
+          labeledOrderEvent_ = null;
+        }
+        return labeledOrderEventBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -2627,6 +2830,1505 @@ public final class TradingProto {
 
   }
 
+  public interface LabelOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Label)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>optional int64 value = 2;</code>
+     */
+    long getValue();
+  }
+  /**
+   * Protobuf type {@code Label}
+   */
+  public  static final class Label extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Label)
+      LabelOrBuilder {
+    // Use Label.newBuilder() to construct.
+    private Label(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Label() {
+      name_ = "";
+      value_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private Label(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 16: {
+
+              value_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.anhonesteffort.trading.proto.TradingProto.internal_static_Label_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.anhonesteffort.trading.proto.TradingProto.internal_static_Label_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.anhonesteffort.trading.proto.TradingProto.Label.class, org.anhonesteffort.trading.proto.TradingProto.Label.Builder.class);
+    }
+
+    public static final int NAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private long value_;
+    /**
+     * <code>optional int64 value = 2;</code>
+     */
+    public long getValue() {
+      return value_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
+      }
+      if (value_ != 0L) {
+        output.writeInt64(2, value_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+      }
+      if (value_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, value_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.anhonesteffort.trading.proto.TradingProto.Label)) {
+        return super.equals(obj);
+      }
+      org.anhonesteffort.trading.proto.TradingProto.Label other = (org.anhonesteffort.trading.proto.TradingProto.Label) obj;
+
+      boolean result = true;
+      result = result && getName()
+          .equals(other.getName());
+      result = result && (getValue()
+          == other.getValue());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getValue());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.anhonesteffort.trading.proto.TradingProto.Label parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.Label parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.Label parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.Label parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.Label parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.Label parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.Label parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.Label parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.Label parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.Label parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.anhonesteffort.trading.proto.TradingProto.Label prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Label}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Label)
+        org.anhonesteffort.trading.proto.TradingProto.LabelOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.anhonesteffort.trading.proto.TradingProto.internal_static_Label_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.anhonesteffort.trading.proto.TradingProto.internal_static_Label_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.anhonesteffort.trading.proto.TradingProto.Label.class, org.anhonesteffort.trading.proto.TradingProto.Label.Builder.class);
+      }
+
+      // Construct using org.anhonesteffort.trading.proto.TradingProto.Label.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        name_ = "";
+
+        value_ = 0L;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.anhonesteffort.trading.proto.TradingProto.internal_static_Label_descriptor;
+      }
+
+      public org.anhonesteffort.trading.proto.TradingProto.Label getDefaultInstanceForType() {
+        return org.anhonesteffort.trading.proto.TradingProto.Label.getDefaultInstance();
+      }
+
+      public org.anhonesteffort.trading.proto.TradingProto.Label build() {
+        org.anhonesteffort.trading.proto.TradingProto.Label result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.anhonesteffort.trading.proto.TradingProto.Label buildPartial() {
+        org.anhonesteffort.trading.proto.TradingProto.Label result = new org.anhonesteffort.trading.proto.TradingProto.Label(this);
+        result.name_ = name_;
+        result.value_ = value_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.anhonesteffort.trading.proto.TradingProto.Label) {
+          return mergeFrom((org.anhonesteffort.trading.proto.TradingProto.Label)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.anhonesteffort.trading.proto.TradingProto.Label other) {
+        if (other == org.anhonesteffort.trading.proto.TradingProto.Label.getDefaultInstance()) return this;
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.getValue() != 0L) {
+          setValue(other.getValue());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.anhonesteffort.trading.proto.TradingProto.Label parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.anhonesteffort.trading.proto.TradingProto.Label) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long value_ ;
+      /**
+       * <code>optional int64 value = 2;</code>
+       */
+      public long getValue() {
+        return value_;
+      }
+      /**
+       * <code>optional int64 value = 2;</code>
+       */
+      public Builder setValue(long value) {
+        
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 value = 2;</code>
+       */
+      public Builder clearValue() {
+        
+        value_ = 0L;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Label)
+    }
+
+    // @@protoc_insertion_point(class_scope:Label)
+    private static final org.anhonesteffort.trading.proto.TradingProto.Label DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.anhonesteffort.trading.proto.TradingProto.Label();
+    }
+
+    public static org.anhonesteffort.trading.proto.TradingProto.Label getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Label>
+        PARSER = new com.google.protobuf.AbstractParser<Label>() {
+      public Label parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Label(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Label> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Label> getParserForType() {
+      return PARSER;
+    }
+
+    public org.anhonesteffort.trading.proto.TradingProto.Label getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LabeledOrderEventOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:LabeledOrderEvent)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional .OrderEvent orderEvent = 1;</code>
+     */
+    boolean hasOrderEvent();
+    /**
+     * <code>optional .OrderEvent orderEvent = 1;</code>
+     */
+    org.anhonesteffort.trading.proto.TradingProto.OrderEvent getOrderEvent();
+    /**
+     * <code>optional .OrderEvent orderEvent = 1;</code>
+     */
+    org.anhonesteffort.trading.proto.TradingProto.OrderEventOrBuilder getOrderEventOrBuilder();
+
+    /**
+     * <code>repeated .Label labels = 2;</code>
+     */
+    java.util.List<org.anhonesteffort.trading.proto.TradingProto.Label> 
+        getLabelsList();
+    /**
+     * <code>repeated .Label labels = 2;</code>
+     */
+    org.anhonesteffort.trading.proto.TradingProto.Label getLabels(int index);
+    /**
+     * <code>repeated .Label labels = 2;</code>
+     */
+    int getLabelsCount();
+    /**
+     * <code>repeated .Label labels = 2;</code>
+     */
+    java.util.List<? extends org.anhonesteffort.trading.proto.TradingProto.LabelOrBuilder> 
+        getLabelsOrBuilderList();
+    /**
+     * <code>repeated .Label labels = 2;</code>
+     */
+    org.anhonesteffort.trading.proto.TradingProto.LabelOrBuilder getLabelsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code LabeledOrderEvent}
+   */
+  public  static final class LabeledOrderEvent extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:LabeledOrderEvent)
+      LabeledOrderEventOrBuilder {
+    // Use LabeledOrderEvent.newBuilder() to construct.
+    private LabeledOrderEvent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private LabeledOrderEvent() {
+      labels_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private LabeledOrderEvent(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Builder subBuilder = null;
+              if (orderEvent_ != null) {
+                subBuilder = orderEvent_.toBuilder();
+              }
+              orderEvent_ = input.readMessage(org.anhonesteffort.trading.proto.TradingProto.OrderEvent.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(orderEvent_);
+                orderEvent_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                labels_ = new java.util.ArrayList<org.anhonesteffort.trading.proto.TradingProto.Label>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              labels_.add(
+                  input.readMessage(org.anhonesteffort.trading.proto.TradingProto.Label.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          labels_ = java.util.Collections.unmodifiableList(labels_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.anhonesteffort.trading.proto.TradingProto.internal_static_LabeledOrderEvent_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.anhonesteffort.trading.proto.TradingProto.internal_static_LabeledOrderEvent_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.class, org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int ORDEREVENT_FIELD_NUMBER = 1;
+    private org.anhonesteffort.trading.proto.TradingProto.OrderEvent orderEvent_;
+    /**
+     * <code>optional .OrderEvent orderEvent = 1;</code>
+     */
+    public boolean hasOrderEvent() {
+      return orderEvent_ != null;
+    }
+    /**
+     * <code>optional .OrderEvent orderEvent = 1;</code>
+     */
+    public org.anhonesteffort.trading.proto.TradingProto.OrderEvent getOrderEvent() {
+      return orderEvent_ == null ? org.anhonesteffort.trading.proto.TradingProto.OrderEvent.getDefaultInstance() : orderEvent_;
+    }
+    /**
+     * <code>optional .OrderEvent orderEvent = 1;</code>
+     */
+    public org.anhonesteffort.trading.proto.TradingProto.OrderEventOrBuilder getOrderEventOrBuilder() {
+      return getOrderEvent();
+    }
+
+    public static final int LABELS_FIELD_NUMBER = 2;
+    private java.util.List<org.anhonesteffort.trading.proto.TradingProto.Label> labels_;
+    /**
+     * <code>repeated .Label labels = 2;</code>
+     */
+    public java.util.List<org.anhonesteffort.trading.proto.TradingProto.Label> getLabelsList() {
+      return labels_;
+    }
+    /**
+     * <code>repeated .Label labels = 2;</code>
+     */
+    public java.util.List<? extends org.anhonesteffort.trading.proto.TradingProto.LabelOrBuilder> 
+        getLabelsOrBuilderList() {
+      return labels_;
+    }
+    /**
+     * <code>repeated .Label labels = 2;</code>
+     */
+    public int getLabelsCount() {
+      return labels_.size();
+    }
+    /**
+     * <code>repeated .Label labels = 2;</code>
+     */
+    public org.anhonesteffort.trading.proto.TradingProto.Label getLabels(int index) {
+      return labels_.get(index);
+    }
+    /**
+     * <code>repeated .Label labels = 2;</code>
+     */
+    public org.anhonesteffort.trading.proto.TradingProto.LabelOrBuilder getLabelsOrBuilder(
+        int index) {
+      return labels_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (orderEvent_ != null) {
+        output.writeMessage(1, getOrderEvent());
+      }
+      for (int i = 0; i < labels_.size(); i++) {
+        output.writeMessage(2, labels_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (orderEvent_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getOrderEvent());
+      }
+      for (int i = 0; i < labels_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, labels_.get(i));
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent)) {
+        return super.equals(obj);
+      }
+      org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent other = (org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent) obj;
+
+      boolean result = true;
+      result = result && (hasOrderEvent() == other.hasOrderEvent());
+      if (hasOrderEvent()) {
+        result = result && getOrderEvent()
+            .equals(other.getOrderEvent());
+      }
+      result = result && getLabelsList()
+          .equals(other.getLabelsList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (hasOrderEvent()) {
+        hash = (37 * hash) + ORDEREVENT_FIELD_NUMBER;
+        hash = (53 * hash) + getOrderEvent().hashCode();
+      }
+      if (getLabelsCount() > 0) {
+        hash = (37 * hash) + LABELS_FIELD_NUMBER;
+        hash = (53 * hash) + getLabelsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code LabeledOrderEvent}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:LabeledOrderEvent)
+        org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEventOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.anhonesteffort.trading.proto.TradingProto.internal_static_LabeledOrderEvent_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.anhonesteffort.trading.proto.TradingProto.internal_static_LabeledOrderEvent_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.class, org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.Builder.class);
+      }
+
+      // Construct using org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getLabelsFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        if (orderEventBuilder_ == null) {
+          orderEvent_ = null;
+        } else {
+          orderEvent_ = null;
+          orderEventBuilder_ = null;
+        }
+        if (labelsBuilder_ == null) {
+          labels_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          labelsBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.anhonesteffort.trading.proto.TradingProto.internal_static_LabeledOrderEvent_descriptor;
+      }
+
+      public org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent getDefaultInstanceForType() {
+        return org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.getDefaultInstance();
+      }
+
+      public org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent build() {
+        org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent buildPartial() {
+        org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent result = new org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (orderEventBuilder_ == null) {
+          result.orderEvent_ = orderEvent_;
+        } else {
+          result.orderEvent_ = orderEventBuilder_.build();
+        }
+        if (labelsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            labels_ = java.util.Collections.unmodifiableList(labels_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.labels_ = labels_;
+        } else {
+          result.labels_ = labelsBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent) {
+          return mergeFrom((org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent other) {
+        if (other == org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent.getDefaultInstance()) return this;
+        if (other.hasOrderEvent()) {
+          mergeOrderEvent(other.getOrderEvent());
+        }
+        if (labelsBuilder_ == null) {
+          if (!other.labels_.isEmpty()) {
+            if (labels_.isEmpty()) {
+              labels_ = other.labels_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureLabelsIsMutable();
+              labels_.addAll(other.labels_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.labels_.isEmpty()) {
+            if (labelsBuilder_.isEmpty()) {
+              labelsBuilder_.dispose();
+              labelsBuilder_ = null;
+              labels_ = other.labels_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              labelsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getLabelsFieldBuilder() : null;
+            } else {
+              labelsBuilder_.addAllMessages(other.labels_);
+            }
+          }
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private org.anhonesteffort.trading.proto.TradingProto.OrderEvent orderEvent_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.anhonesteffort.trading.proto.TradingProto.OrderEvent, org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Builder, org.anhonesteffort.trading.proto.TradingProto.OrderEventOrBuilder> orderEventBuilder_;
+      /**
+       * <code>optional .OrderEvent orderEvent = 1;</code>
+       */
+      public boolean hasOrderEvent() {
+        return orderEventBuilder_ != null || orderEvent_ != null;
+      }
+      /**
+       * <code>optional .OrderEvent orderEvent = 1;</code>
+       */
+      public org.anhonesteffort.trading.proto.TradingProto.OrderEvent getOrderEvent() {
+        if (orderEventBuilder_ == null) {
+          return orderEvent_ == null ? org.anhonesteffort.trading.proto.TradingProto.OrderEvent.getDefaultInstance() : orderEvent_;
+        } else {
+          return orderEventBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .OrderEvent orderEvent = 1;</code>
+       */
+      public Builder setOrderEvent(org.anhonesteffort.trading.proto.TradingProto.OrderEvent value) {
+        if (orderEventBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          orderEvent_ = value;
+          onChanged();
+        } else {
+          orderEventBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .OrderEvent orderEvent = 1;</code>
+       */
+      public Builder setOrderEvent(
+          org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Builder builderForValue) {
+        if (orderEventBuilder_ == null) {
+          orderEvent_ = builderForValue.build();
+          onChanged();
+        } else {
+          orderEventBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .OrderEvent orderEvent = 1;</code>
+       */
+      public Builder mergeOrderEvent(org.anhonesteffort.trading.proto.TradingProto.OrderEvent value) {
+        if (orderEventBuilder_ == null) {
+          if (orderEvent_ != null) {
+            orderEvent_ =
+              org.anhonesteffort.trading.proto.TradingProto.OrderEvent.newBuilder(orderEvent_).mergeFrom(value).buildPartial();
+          } else {
+            orderEvent_ = value;
+          }
+          onChanged();
+        } else {
+          orderEventBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .OrderEvent orderEvent = 1;</code>
+       */
+      public Builder clearOrderEvent() {
+        if (orderEventBuilder_ == null) {
+          orderEvent_ = null;
+          onChanged();
+        } else {
+          orderEvent_ = null;
+          orderEventBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .OrderEvent orderEvent = 1;</code>
+       */
+      public org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Builder getOrderEventBuilder() {
+        
+        onChanged();
+        return getOrderEventFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .OrderEvent orderEvent = 1;</code>
+       */
+      public org.anhonesteffort.trading.proto.TradingProto.OrderEventOrBuilder getOrderEventOrBuilder() {
+        if (orderEventBuilder_ != null) {
+          return orderEventBuilder_.getMessageOrBuilder();
+        } else {
+          return orderEvent_ == null ?
+              org.anhonesteffort.trading.proto.TradingProto.OrderEvent.getDefaultInstance() : orderEvent_;
+        }
+      }
+      /**
+       * <code>optional .OrderEvent orderEvent = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.anhonesteffort.trading.proto.TradingProto.OrderEvent, org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Builder, org.anhonesteffort.trading.proto.TradingProto.OrderEventOrBuilder> 
+          getOrderEventFieldBuilder() {
+        if (orderEventBuilder_ == null) {
+          orderEventBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.anhonesteffort.trading.proto.TradingProto.OrderEvent, org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Builder, org.anhonesteffort.trading.proto.TradingProto.OrderEventOrBuilder>(
+                  getOrderEvent(),
+                  getParentForChildren(),
+                  isClean());
+          orderEvent_ = null;
+        }
+        return orderEventBuilder_;
+      }
+
+      private java.util.List<org.anhonesteffort.trading.proto.TradingProto.Label> labels_ =
+        java.util.Collections.emptyList();
+      private void ensureLabelsIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          labels_ = new java.util.ArrayList<org.anhonesteffort.trading.proto.TradingProto.Label>(labels_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.anhonesteffort.trading.proto.TradingProto.Label, org.anhonesteffort.trading.proto.TradingProto.Label.Builder, org.anhonesteffort.trading.proto.TradingProto.LabelOrBuilder> labelsBuilder_;
+
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public java.util.List<org.anhonesteffort.trading.proto.TradingProto.Label> getLabelsList() {
+        if (labelsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(labels_);
+        } else {
+          return labelsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public int getLabelsCount() {
+        if (labelsBuilder_ == null) {
+          return labels_.size();
+        } else {
+          return labelsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public org.anhonesteffort.trading.proto.TradingProto.Label getLabels(int index) {
+        if (labelsBuilder_ == null) {
+          return labels_.get(index);
+        } else {
+          return labelsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public Builder setLabels(
+          int index, org.anhonesteffort.trading.proto.TradingProto.Label value) {
+        if (labelsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabelsIsMutable();
+          labels_.set(index, value);
+          onChanged();
+        } else {
+          labelsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public Builder setLabels(
+          int index, org.anhonesteffort.trading.proto.TradingProto.Label.Builder builderForValue) {
+        if (labelsBuilder_ == null) {
+          ensureLabelsIsMutable();
+          labels_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          labelsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public Builder addLabels(org.anhonesteffort.trading.proto.TradingProto.Label value) {
+        if (labelsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabelsIsMutable();
+          labels_.add(value);
+          onChanged();
+        } else {
+          labelsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public Builder addLabels(
+          int index, org.anhonesteffort.trading.proto.TradingProto.Label value) {
+        if (labelsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabelsIsMutable();
+          labels_.add(index, value);
+          onChanged();
+        } else {
+          labelsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public Builder addLabels(
+          org.anhonesteffort.trading.proto.TradingProto.Label.Builder builderForValue) {
+        if (labelsBuilder_ == null) {
+          ensureLabelsIsMutable();
+          labels_.add(builderForValue.build());
+          onChanged();
+        } else {
+          labelsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public Builder addLabels(
+          int index, org.anhonesteffort.trading.proto.TradingProto.Label.Builder builderForValue) {
+        if (labelsBuilder_ == null) {
+          ensureLabelsIsMutable();
+          labels_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          labelsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public Builder addAllLabels(
+          java.lang.Iterable<? extends org.anhonesteffort.trading.proto.TradingProto.Label> values) {
+        if (labelsBuilder_ == null) {
+          ensureLabelsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, labels_);
+          onChanged();
+        } else {
+          labelsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public Builder clearLabels() {
+        if (labelsBuilder_ == null) {
+          labels_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          labelsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public Builder removeLabels(int index) {
+        if (labelsBuilder_ == null) {
+          ensureLabelsIsMutable();
+          labels_.remove(index);
+          onChanged();
+        } else {
+          labelsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public org.anhonesteffort.trading.proto.TradingProto.Label.Builder getLabelsBuilder(
+          int index) {
+        return getLabelsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public org.anhonesteffort.trading.proto.TradingProto.LabelOrBuilder getLabelsOrBuilder(
+          int index) {
+        if (labelsBuilder_ == null) {
+          return labels_.get(index);  } else {
+          return labelsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public java.util.List<? extends org.anhonesteffort.trading.proto.TradingProto.LabelOrBuilder> 
+           getLabelsOrBuilderList() {
+        if (labelsBuilder_ != null) {
+          return labelsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(labels_);
+        }
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public org.anhonesteffort.trading.proto.TradingProto.Label.Builder addLabelsBuilder() {
+        return getLabelsFieldBuilder().addBuilder(
+            org.anhonesteffort.trading.proto.TradingProto.Label.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public org.anhonesteffort.trading.proto.TradingProto.Label.Builder addLabelsBuilder(
+          int index) {
+        return getLabelsFieldBuilder().addBuilder(
+            index, org.anhonesteffort.trading.proto.TradingProto.Label.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Label labels = 2;</code>
+       */
+      public java.util.List<org.anhonesteffort.trading.proto.TradingProto.Label.Builder> 
+           getLabelsBuilderList() {
+        return getLabelsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.anhonesteffort.trading.proto.TradingProto.Label, org.anhonesteffort.trading.proto.TradingProto.Label.Builder, org.anhonesteffort.trading.proto.TradingProto.LabelOrBuilder> 
+          getLabelsFieldBuilder() {
+        if (labelsBuilder_ == null) {
+          labelsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              org.anhonesteffort.trading.proto.TradingProto.Label, org.anhonesteffort.trading.proto.TradingProto.Label.Builder, org.anhonesteffort.trading.proto.TradingProto.LabelOrBuilder>(
+                  labels_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          labels_ = null;
+        }
+        return labelsBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:LabeledOrderEvent)
+    }
+
+    // @@protoc_insertion_point(class_scope:LabeledOrderEvent)
+    private static final org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent();
+    }
+
+    public static org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<LabeledOrderEvent>
+        PARSER = new com.google.protobuf.AbstractParser<LabeledOrderEvent>() {
+      public LabeledOrderEvent parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new LabeledOrderEvent(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<LabeledOrderEvent> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LabeledOrderEvent> getParserForType() {
+      return PARSER;
+    }
+
+    public org.anhonesteffort.trading.proto.TradingProto.LabeledOrderEvent getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_BaseMessage_descriptor;
   private static final 
@@ -2642,6 +4344,16 @@ public final class TradingProto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_OrderEvent_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Label_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Label_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_LabeledOrderEvent_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_LabeledOrderEvent_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2651,19 +4363,24 @@ public final class TradingProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rtrading.proto\"\212\001\n\013BaseMessage\022\037\n\004type\030" +
+      "\n\rtrading.proto\"\322\001\n\013BaseMessage\022\037\n\004type\030" +
       "\001 \001(\0162\021.BaseMessage.Type\022\025\n\005error\030\002 \001(\0132" +
       "\006.Error\022\037\n\norderEvent\030\003 \001(\0132\013.OrderEvent" +
-      "\"\"\n\004Type\022\t\n\005ERROR\020\000\022\017\n\013ORDER_EVENT\020\001\"\030\n\005" +
-      "Error\022\017\n\007message\030\001 \001(\t\"\372\001\n\nOrderEvent\022\036\n" +
-      "\004type\030\001 \001(\0162\020.OrderEvent.Type\022\016\n\006timeMs\030" +
-      "\002 \001(\003\022\016\n\006timeNs\030\003 \001(\003\022\017\n\007orderId\030\004 \001(\t\022\036" +
-      "\n\004side\030\005 \001(\0162\020.OrderEvent.Side\022\r\n\005price\030" +
-      "\006 \001(\003\022\014\n\004size\030\007 \001(\003\"D\n\004Type\022\010\n\004OPEN\020\000\022\010\n" +
-      "\004TAKE\020\001\022\n\n\006REDUCE\020\002\022\016\n\nSYNC_START\020\003\022\014\n\010S",
-      "YNC_END\020\004\"\030\n\004Side\022\007\n\003ASK\020\000\022\007\n\003BID\020\001B0\n o" +
-      "rg.anhonesteffort.trading.protoB\014Trading" +
-      "Protob\006proto3"
+      "\022-\n\021labeledOrderEvent\030\004 \001(\0132\022.LabeledOrd" +
+      "erEvent\";\n\004Type\022\t\n\005ERROR\020\000\022\017\n\013ORDER_EVEN" +
+      "T\020\001\022\027\n\023LABELED_ORDER_EVENT\020\002\"\030\n\005Error\022\017\n" +
+      "\007message\030\001 \001(\t\"\372\001\n\nOrderEvent\022\036\n\004type\030\001 " +
+      "\001(\0162\020.OrderEvent.Type\022\016\n\006timeMs\030\002 \001(\003\022\016\n" +
+      "\006timeNs\030\003 \001(\003\022\017\n\007orderId\030\004 \001(\t\022\036\n\004side\030\005" +
+      " \001(\0162\020.OrderEvent.Side\022\r\n\005price\030\006 \001(\003\022\014\n",
+      "\004size\030\007 \001(\003\"D\n\004Type\022\010\n\004OPEN\020\000\022\010\n\004TAKE\020\001\022" +
+      "\n\n\006REDUCE\020\002\022\016\n\nSYNC_START\020\003\022\014\n\010SYNC_END\020" +
+      "\004\"\030\n\004Side\022\007\n\003ASK\020\000\022\007\n\003BID\020\001\"$\n\005Label\022\014\n\004" +
+      "name\030\001 \001(\t\022\r\n\005value\030\002 \001(\003\"L\n\021LabeledOrde" +
+      "rEvent\022\037\n\norderEvent\030\001 \001(\0132\013.OrderEvent\022" +
+      "\026\n\006labels\030\002 \003(\0132\006.LabelB0\n org.anhoneste" +
+      "ffort.trading.protoB\014TradingProtob\006proto" +
+      "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2682,7 +4399,7 @@ public final class TradingProto {
     internal_static_BaseMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BaseMessage_descriptor,
-        new java.lang.String[] { "Type", "Error", "OrderEvent", });
+        new java.lang.String[] { "Type", "Error", "OrderEvent", "LabeledOrderEvent", });
     internal_static_Error_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Error_fieldAccessorTable = new
@@ -2695,6 +4412,18 @@ public final class TradingProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_OrderEvent_descriptor,
         new java.lang.String[] { "Type", "TimeMs", "TimeNs", "OrderId", "Side", "Price", "Size", });
+    internal_static_Label_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_Label_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Label_descriptor,
+        new java.lang.String[] { "Name", "Value", });
+    internal_static_LabeledOrderEvent_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_LabeledOrderEvent_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_LabeledOrderEvent_descriptor,
+        new java.lang.String[] { "OrderEvent", "Labels", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
