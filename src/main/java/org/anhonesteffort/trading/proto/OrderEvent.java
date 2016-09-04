@@ -1,4 +1,6 @@
-package org.anhonesteffort.trading.book;
+package org.anhonesteffort.trading.proto;
+
+import org.anhonesteffort.trading.book.Order;
 
 import java.io.Externalizable;
 import java.io.IOException;

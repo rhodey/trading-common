@@ -18,7 +18,6 @@
 package org.anhonesteffort.trading.proto;
 
 import org.anhonesteffort.trading.book.Order;
-import org.anhonesteffort.trading.book.OrderEvent;
 
 import java.util.List;
 import java.util.stream.Collectors;
