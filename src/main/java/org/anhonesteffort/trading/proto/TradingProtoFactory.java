@@ -19,6 +19,7 @@ package org.anhonesteffort.trading.proto;
 
 import org.anhonesteffort.trading.book.Order;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -90,6 +91,10 @@ public class TradingProtoFactory {
                 .addAllLabels(labels.stream().map(this::label).collect(Collectors.toList()))
                 .build()
         ).build();
+  }
+
+  public BaseMessage labeledOrderEvent(OrderEvent event, Label... labels) {
+    return labeledOrderEvent(event, Arrays.asList(labels));
   }
 
 }
