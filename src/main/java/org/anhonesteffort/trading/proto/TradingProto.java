@@ -52,19 +52,6 @@ public final class TradingProto {
      * <code>optional .OrderEvent orderEvent = 3;</code>
      */
     org.anhonesteffort.trading.proto.TradingProto.OrderEventOrBuilder getOrderEventOrBuilder();
-
-    /**
-     * <code>optional .Latency latency = 4;</code>
-     */
-    boolean hasLatency();
-    /**
-     * <code>optional .Latency latency = 4;</code>
-     */
-    org.anhonesteffort.trading.proto.TradingProto.Latency getLatency();
-    /**
-     * <code>optional .Latency latency = 4;</code>
-     */
-    org.anhonesteffort.trading.proto.TradingProto.LatencyOrBuilder getLatencyOrBuilder();
   }
   /**
    * Protobuf type {@code BaseMessage}
@@ -138,19 +125,6 @@ public final class TradingProto {
 
               break;
             }
-            case 34: {
-              org.anhonesteffort.trading.proto.TradingProto.Latency.Builder subBuilder = null;
-              if (latency_ != null) {
-                subBuilder = latency_.toBuilder();
-              }
-              latency_ = input.readMessage(org.anhonesteffort.trading.proto.TradingProto.Latency.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(latency_);
-                latency_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -187,10 +161,6 @@ public final class TradingProto {
        * <code>ORDER_EVENT = 1;</code>
        */
       ORDER_EVENT(1),
-      /**
-       * <code>LATENCY = 2;</code>
-       */
-      LATENCY(2),
       UNRECOGNIZED(-1),
       ;
 
@@ -202,10 +172,6 @@ public final class TradingProto {
        * <code>ORDER_EVENT = 1;</code>
        */
       public static final int ORDER_EVENT_VALUE = 1;
-      /**
-       * <code>LATENCY = 2;</code>
-       */
-      public static final int LATENCY_VALUE = 2;
 
 
       public final int getNumber() {
@@ -228,7 +194,6 @@ public final class TradingProto {
         switch (value) {
           case 0: return ERROR;
           case 1: return ORDER_EVENT;
-          case 2: return LATENCY;
           default: return null;
         }
       }
@@ -339,27 +304,6 @@ public final class TradingProto {
       return getOrderEvent();
     }
 
-    public static final int LATENCY_FIELD_NUMBER = 4;
-    private org.anhonesteffort.trading.proto.TradingProto.Latency latency_;
-    /**
-     * <code>optional .Latency latency = 4;</code>
-     */
-    public boolean hasLatency() {
-      return latency_ != null;
-    }
-    /**
-     * <code>optional .Latency latency = 4;</code>
-     */
-    public org.anhonesteffort.trading.proto.TradingProto.Latency getLatency() {
-      return latency_ == null ? org.anhonesteffort.trading.proto.TradingProto.Latency.getDefaultInstance() : latency_;
-    }
-    /**
-     * <code>optional .Latency latency = 4;</code>
-     */
-    public org.anhonesteffort.trading.proto.TradingProto.LatencyOrBuilder getLatencyOrBuilder() {
-      return getLatency();
-    }
-
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -381,9 +325,6 @@ public final class TradingProto {
       if (orderEvent_ != null) {
         output.writeMessage(3, getOrderEvent());
       }
-      if (latency_ != null) {
-        output.writeMessage(4, getLatency());
-      }
     }
 
     public int getSerializedSize() {
@@ -402,10 +343,6 @@ public final class TradingProto {
       if (orderEvent_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getOrderEvent());
-      }
-      if (latency_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getLatency());
       }
       memoizedSize = size;
       return size;
@@ -434,11 +371,6 @@ public final class TradingProto {
         result = result && getOrderEvent()
             .equals(other.getOrderEvent());
       }
-      result = result && (hasLatency() == other.hasLatency());
-      if (hasLatency()) {
-        result = result && getLatency()
-            .equals(other.getLatency());
-      }
       return result;
     }
 
@@ -458,10 +390,6 @@ public final class TradingProto {
       if (hasOrderEvent()) {
         hash = (37 * hash) + ORDEREVENT_FIELD_NUMBER;
         hash = (53 * hash) + getOrderEvent().hashCode();
-      }
-      if (hasLatency()) {
-        hash = (37 * hash) + LATENCY_FIELD_NUMBER;
-        hash = (53 * hash) + getLatency().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -595,12 +523,6 @@ public final class TradingProto {
           orderEvent_ = null;
           orderEventBuilder_ = null;
         }
-        if (latencyBuilder_ == null) {
-          latency_ = null;
-        } else {
-          latency_ = null;
-          latencyBuilder_ = null;
-        }
         return this;
       }
 
@@ -633,11 +555,6 @@ public final class TradingProto {
           result.orderEvent_ = orderEvent_;
         } else {
           result.orderEvent_ = orderEventBuilder_.build();
-        }
-        if (latencyBuilder_ == null) {
-          result.latency_ = latency_;
-        } else {
-          result.latency_ = latencyBuilder_.build();
         }
         onBuilt();
         return result;
@@ -688,9 +605,6 @@ public final class TradingProto {
         }
         if (other.hasOrderEvent()) {
           mergeOrderEvent(other.getOrderEvent());
-        }
-        if (other.hasLatency()) {
-          mergeLatency(other.getLatency());
         }
         onChanged();
         return this;
@@ -994,123 +908,6 @@ public final class TradingProto {
           orderEvent_ = null;
         }
         return orderEventBuilder_;
-      }
-
-      private org.anhonesteffort.trading.proto.TradingProto.Latency latency_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          org.anhonesteffort.trading.proto.TradingProto.Latency, org.anhonesteffort.trading.proto.TradingProto.Latency.Builder, org.anhonesteffort.trading.proto.TradingProto.LatencyOrBuilder> latencyBuilder_;
-      /**
-       * <code>optional .Latency latency = 4;</code>
-       */
-      public boolean hasLatency() {
-        return latencyBuilder_ != null || latency_ != null;
-      }
-      /**
-       * <code>optional .Latency latency = 4;</code>
-       */
-      public org.anhonesteffort.trading.proto.TradingProto.Latency getLatency() {
-        if (latencyBuilder_ == null) {
-          return latency_ == null ? org.anhonesteffort.trading.proto.TradingProto.Latency.getDefaultInstance() : latency_;
-        } else {
-          return latencyBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .Latency latency = 4;</code>
-       */
-      public Builder setLatency(org.anhonesteffort.trading.proto.TradingProto.Latency value) {
-        if (latencyBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          latency_ = value;
-          onChanged();
-        } else {
-          latencyBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .Latency latency = 4;</code>
-       */
-      public Builder setLatency(
-          org.anhonesteffort.trading.proto.TradingProto.Latency.Builder builderForValue) {
-        if (latencyBuilder_ == null) {
-          latency_ = builderForValue.build();
-          onChanged();
-        } else {
-          latencyBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .Latency latency = 4;</code>
-       */
-      public Builder mergeLatency(org.anhonesteffort.trading.proto.TradingProto.Latency value) {
-        if (latencyBuilder_ == null) {
-          if (latency_ != null) {
-            latency_ =
-              org.anhonesteffort.trading.proto.TradingProto.Latency.newBuilder(latency_).mergeFrom(value).buildPartial();
-          } else {
-            latency_ = value;
-          }
-          onChanged();
-        } else {
-          latencyBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .Latency latency = 4;</code>
-       */
-      public Builder clearLatency() {
-        if (latencyBuilder_ == null) {
-          latency_ = null;
-          onChanged();
-        } else {
-          latency_ = null;
-          latencyBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .Latency latency = 4;</code>
-       */
-      public org.anhonesteffort.trading.proto.TradingProto.Latency.Builder getLatencyBuilder() {
-        
-        onChanged();
-        return getLatencyFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .Latency latency = 4;</code>
-       */
-      public org.anhonesteffort.trading.proto.TradingProto.LatencyOrBuilder getLatencyOrBuilder() {
-        if (latencyBuilder_ != null) {
-          return latencyBuilder_.getMessageOrBuilder();
-        } else {
-          return latency_ == null ?
-              org.anhonesteffort.trading.proto.TradingProto.Latency.getDefaultInstance() : latency_;
-        }
-      }
-      /**
-       * <code>optional .Latency latency = 4;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          org.anhonesteffort.trading.proto.TradingProto.Latency, org.anhonesteffort.trading.proto.TradingProto.Latency.Builder, org.anhonesteffort.trading.proto.TradingProto.LatencyOrBuilder> 
-          getLatencyFieldBuilder() {
-        if (latencyBuilder_ == null) {
-          latencyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              org.anhonesteffort.trading.proto.TradingProto.Latency, org.anhonesteffort.trading.proto.TradingProto.Latency.Builder, org.anhonesteffort.trading.proto.TradingProto.LatencyOrBuilder>(
-                  getLatency(),
-                  getParentForChildren(),
-                  isClean());
-          latency_ = null;
-        }
-        return latencyBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1678,31 +1475,41 @@ public final class TradingProto {
     org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Type getType();
 
     /**
-     * <code>optional string orderId = 2;</code>
+     * <code>optional int64 timeMs = 2;</code>
+     */
+    long getTimeMs();
+
+    /**
+     * <code>optional int64 timeNs = 3;</code>
+     */
+    long getTimeNs();
+
+    /**
+     * <code>optional string orderId = 4;</code>
      */
     java.lang.String getOrderId();
     /**
-     * <code>optional string orderId = 2;</code>
+     * <code>optional string orderId = 4;</code>
      */
     com.google.protobuf.ByteString
         getOrderIdBytes();
 
     /**
-     * <code>optional .OrderEvent.Side side = 3;</code>
+     * <code>optional .OrderEvent.Side side = 5;</code>
      */
     int getSideValue();
     /**
-     * <code>optional .OrderEvent.Side side = 3;</code>
+     * <code>optional .OrderEvent.Side side = 5;</code>
      */
     org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side getSide();
 
     /**
-     * <code>optional int64 price = 4;</code>
+     * <code>optional int64 price = 6;</code>
      */
     long getPrice();
 
     /**
-     * <code>optional int64 size = 5;</code>
+     * <code>optional int64 size = 7;</code>
      */
     long getSize();
   }
@@ -1719,6 +1526,8 @@ public final class TradingProto {
     }
     private OrderEvent() {
       type_ = 0;
+      timeMs_ = 0L;
+      timeNs_ = 0L;
       orderId_ = "";
       side_ = 0;
       price_ = 0L;
@@ -1756,24 +1565,34 @@ public final class TradingProto {
               type_ = rawValue;
               break;
             }
-            case 18: {
+            case 16: {
+
+              timeMs_ = input.readInt64();
+              break;
+            }
+            case 24: {
+
+              timeNs_ = input.readInt64();
+              break;
+            }
+            case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
               orderId_ = s;
               break;
             }
-            case 24: {
+            case 40: {
               int rawValue = input.readEnum();
 
               side_ = rawValue;
               break;
             }
-            case 32: {
+            case 48: {
 
               price_ = input.readInt64();
               break;
             }
-            case 40: {
+            case 56: {
 
               size_ = input.readInt64();
               break;
@@ -2040,10 +1859,28 @@ public final class TradingProto {
       return result == null ? org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Type.UNRECOGNIZED : result;
     }
 
-    public static final int ORDERID_FIELD_NUMBER = 2;
+    public static final int TIMEMS_FIELD_NUMBER = 2;
+    private long timeMs_;
+    /**
+     * <code>optional int64 timeMs = 2;</code>
+     */
+    public long getTimeMs() {
+      return timeMs_;
+    }
+
+    public static final int TIMENS_FIELD_NUMBER = 3;
+    private long timeNs_;
+    /**
+     * <code>optional int64 timeNs = 3;</code>
+     */
+    public long getTimeNs() {
+      return timeNs_;
+    }
+
+    public static final int ORDERID_FIELD_NUMBER = 4;
     private volatile java.lang.Object orderId_;
     /**
-     * <code>optional string orderId = 2;</code>
+     * <code>optional string orderId = 4;</code>
      */
     public java.lang.String getOrderId() {
       java.lang.Object ref = orderId_;
@@ -2058,7 +1895,7 @@ public final class TradingProto {
       }
     }
     /**
-     * <code>optional string orderId = 2;</code>
+     * <code>optional string orderId = 4;</code>
      */
     public com.google.protobuf.ByteString
         getOrderIdBytes() {
@@ -2074,35 +1911,35 @@ public final class TradingProto {
       }
     }
 
-    public static final int SIDE_FIELD_NUMBER = 3;
+    public static final int SIDE_FIELD_NUMBER = 5;
     private int side_;
     /**
-     * <code>optional .OrderEvent.Side side = 3;</code>
+     * <code>optional .OrderEvent.Side side = 5;</code>
      */
     public int getSideValue() {
       return side_;
     }
     /**
-     * <code>optional .OrderEvent.Side side = 3;</code>
+     * <code>optional .OrderEvent.Side side = 5;</code>
      */
     public org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side getSide() {
       org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side result = org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side.valueOf(side_);
       return result == null ? org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side.UNRECOGNIZED : result;
     }
 
-    public static final int PRICE_FIELD_NUMBER = 4;
+    public static final int PRICE_FIELD_NUMBER = 6;
     private long price_;
     /**
-     * <code>optional int64 price = 4;</code>
+     * <code>optional int64 price = 6;</code>
      */
     public long getPrice() {
       return price_;
     }
 
-    public static final int SIZE_FIELD_NUMBER = 5;
+    public static final int SIZE_FIELD_NUMBER = 7;
     private long size_;
     /**
-     * <code>optional int64 size = 5;</code>
+     * <code>optional int64 size = 7;</code>
      */
     public long getSize() {
       return size_;
@@ -2123,17 +1960,23 @@ public final class TradingProto {
       if (type_ != org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Type.OPEN.getNumber()) {
         output.writeEnum(1, type_);
       }
+      if (timeMs_ != 0L) {
+        output.writeInt64(2, timeMs_);
+      }
+      if (timeNs_ != 0L) {
+        output.writeInt64(3, timeNs_);
+      }
       if (!getOrderIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, orderId_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, orderId_);
       }
       if (side_ != org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side.ASK.getNumber()) {
-        output.writeEnum(3, side_);
+        output.writeEnum(5, side_);
       }
       if (price_ != 0L) {
-        output.writeInt64(4, price_);
+        output.writeInt64(6, price_);
       }
       if (size_ != 0L) {
-        output.writeInt64(5, size_);
+        output.writeInt64(7, size_);
       }
     }
 
@@ -2146,20 +1989,28 @@ public final class TradingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, type_);
       }
+      if (timeMs_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, timeMs_);
+      }
+      if (timeNs_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, timeNs_);
+      }
       if (!getOrderIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, orderId_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, orderId_);
       }
       if (side_ != org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side.ASK.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, side_);
+          .computeEnumSize(5, side_);
       }
       if (price_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, price_);
+          .computeInt64Size(6, price_);
       }
       if (size_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, size_);
+          .computeInt64Size(7, size_);
       }
       memoizedSize = size;
       return size;
@@ -2178,6 +2029,10 @@ public final class TradingProto {
 
       boolean result = true;
       result = result && type_ == other.type_;
+      result = result && (getTimeMs()
+          == other.getTimeMs());
+      result = result && (getTimeNs()
+          == other.getTimeNs());
       result = result && getOrderId()
           .equals(other.getOrderId());
       result = result && side_ == other.side_;
@@ -2197,6 +2052,12 @@ public final class TradingProto {
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + type_;
+      hash = (37 * hash) + TIMEMS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimeMs());
+      hash = (37 * hash) + TIMENS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimeNs());
       hash = (37 * hash) + ORDERID_FIELD_NUMBER;
       hash = (53 * hash) + getOrderId().hashCode();
       hash = (37 * hash) + SIDE_FIELD_NUMBER;
@@ -2327,6 +2188,10 @@ public final class TradingProto {
         super.clear();
         type_ = 0;
 
+        timeMs_ = 0L;
+
+        timeNs_ = 0L;
+
         orderId_ = "";
 
         side_ = 0;
@@ -2358,6 +2223,8 @@ public final class TradingProto {
       public org.anhonesteffort.trading.proto.TradingProto.OrderEvent buildPartial() {
         org.anhonesteffort.trading.proto.TradingProto.OrderEvent result = new org.anhonesteffort.trading.proto.TradingProto.OrderEvent(this);
         result.type_ = type_;
+        result.timeMs_ = timeMs_;
+        result.timeNs_ = timeNs_;
         result.orderId_ = orderId_;
         result.side_ = side_;
         result.price_ = price_;
@@ -2405,6 +2272,12 @@ public final class TradingProto {
         if (other == org.anhonesteffort.trading.proto.TradingProto.OrderEvent.getDefaultInstance()) return this;
         if (other.type_ != 0) {
           setTypeValue(other.getTypeValue());
+        }
+        if (other.getTimeMs() != 0L) {
+          setTimeMs(other.getTimeMs());
+        }
+        if (other.getTimeNs() != 0L) {
+          setTimeNs(other.getTimeNs());
         }
         if (!other.getOrderId().isEmpty()) {
           orderId_ = other.orderId_;
@@ -2489,9 +2362,61 @@ public final class TradingProto {
         return this;
       }
 
+      private long timeMs_ ;
+      /**
+       * <code>optional int64 timeMs = 2;</code>
+       */
+      public long getTimeMs() {
+        return timeMs_;
+      }
+      /**
+       * <code>optional int64 timeMs = 2;</code>
+       */
+      public Builder setTimeMs(long value) {
+        
+        timeMs_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 timeMs = 2;</code>
+       */
+      public Builder clearTimeMs() {
+        
+        timeMs_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long timeNs_ ;
+      /**
+       * <code>optional int64 timeNs = 3;</code>
+       */
+      public long getTimeNs() {
+        return timeNs_;
+      }
+      /**
+       * <code>optional int64 timeNs = 3;</code>
+       */
+      public Builder setTimeNs(long value) {
+        
+        timeNs_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 timeNs = 3;</code>
+       */
+      public Builder clearTimeNs() {
+        
+        timeNs_ = 0L;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object orderId_ = "";
       /**
-       * <code>optional string orderId = 2;</code>
+       * <code>optional string orderId = 4;</code>
        */
       public java.lang.String getOrderId() {
         java.lang.Object ref = orderId_;
@@ -2506,7 +2431,7 @@ public final class TradingProto {
         }
       }
       /**
-       * <code>optional string orderId = 2;</code>
+       * <code>optional string orderId = 4;</code>
        */
       public com.google.protobuf.ByteString
           getOrderIdBytes() {
@@ -2522,7 +2447,7 @@ public final class TradingProto {
         }
       }
       /**
-       * <code>optional string orderId = 2;</code>
+       * <code>optional string orderId = 4;</code>
        */
       public Builder setOrderId(
           java.lang.String value) {
@@ -2535,7 +2460,7 @@ public final class TradingProto {
         return this;
       }
       /**
-       * <code>optional string orderId = 2;</code>
+       * <code>optional string orderId = 4;</code>
        */
       public Builder clearOrderId() {
         
@@ -2544,7 +2469,7 @@ public final class TradingProto {
         return this;
       }
       /**
-       * <code>optional string orderId = 2;</code>
+       * <code>optional string orderId = 4;</code>
        */
       public Builder setOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -2560,13 +2485,13 @@ public final class TradingProto {
 
       private int side_ = 0;
       /**
-       * <code>optional .OrderEvent.Side side = 3;</code>
+       * <code>optional .OrderEvent.Side side = 5;</code>
        */
       public int getSideValue() {
         return side_;
       }
       /**
-       * <code>optional .OrderEvent.Side side = 3;</code>
+       * <code>optional .OrderEvent.Side side = 5;</code>
        */
       public Builder setSideValue(int value) {
         side_ = value;
@@ -2574,14 +2499,14 @@ public final class TradingProto {
         return this;
       }
       /**
-       * <code>optional .OrderEvent.Side side = 3;</code>
+       * <code>optional .OrderEvent.Side side = 5;</code>
        */
       public org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side getSide() {
         org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side result = org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side.valueOf(side_);
         return result == null ? org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side.UNRECOGNIZED : result;
       }
       /**
-       * <code>optional .OrderEvent.Side side = 3;</code>
+       * <code>optional .OrderEvent.Side side = 5;</code>
        */
       public Builder setSide(org.anhonesteffort.trading.proto.TradingProto.OrderEvent.Side value) {
         if (value == null) {
@@ -2593,7 +2518,7 @@ public final class TradingProto {
         return this;
       }
       /**
-       * <code>optional .OrderEvent.Side side = 3;</code>
+       * <code>optional .OrderEvent.Side side = 5;</code>
        */
       public Builder clearSide() {
         
@@ -2604,13 +2529,13 @@ public final class TradingProto {
 
       private long price_ ;
       /**
-       * <code>optional int64 price = 4;</code>
+       * <code>optional int64 price = 6;</code>
        */
       public long getPrice() {
         return price_;
       }
       /**
-       * <code>optional int64 price = 4;</code>
+       * <code>optional int64 price = 6;</code>
        */
       public Builder setPrice(long value) {
         
@@ -2619,7 +2544,7 @@ public final class TradingProto {
         return this;
       }
       /**
-       * <code>optional int64 price = 4;</code>
+       * <code>optional int64 price = 6;</code>
        */
       public Builder clearPrice() {
         
@@ -2630,13 +2555,13 @@ public final class TradingProto {
 
       private long size_ ;
       /**
-       * <code>optional int64 size = 5;</code>
+       * <code>optional int64 size = 7;</code>
        */
       public long getSize() {
         return size_;
       }
       /**
-       * <code>optional int64 size = 5;</code>
+       * <code>optional int64 size = 7;</code>
        */
       public Builder setSize(long value) {
         
@@ -2645,7 +2570,7 @@ public final class TradingProto {
         return this;
       }
       /**
-       * <code>optional int64 size = 5;</code>
+       * <code>optional int64 size = 7;</code>
        */
       public Builder clearSize() {
         
@@ -2702,573 +2627,6 @@ public final class TradingProto {
 
   }
 
-  public interface LatencyOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Latency)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional string name = 1;</code>
-     */
-    java.lang.String getName();
-    /**
-     * <code>optional string name = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>optional int64 avgNs = 2;</code>
-     */
-    long getAvgNs();
-  }
-  /**
-   * Protobuf type {@code Latency}
-   */
-  public  static final class Latency extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Latency)
-      LatencyOrBuilder {
-    // Use Latency.newBuilder() to construct.
-    private Latency(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Latency() {
-      name_ = "";
-      avgNs_ = 0L;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private Latency(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 16: {
-
-              avgNs_ = input.readInt64();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.anhonesteffort.trading.proto.TradingProto.internal_static_Latency_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.anhonesteffort.trading.proto.TradingProto.internal_static_Latency_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              org.anhonesteffort.trading.proto.TradingProto.Latency.class, org.anhonesteffort.trading.proto.TradingProto.Latency.Builder.class);
-    }
-
-    public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>optional string name = 1;</code>
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string name = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int AVGNS_FIELD_NUMBER = 2;
-    private long avgNs_;
-    /**
-     * <code>optional int64 avgNs = 2;</code>
-     */
-    public long getAvgNs() {
-      return avgNs_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-      }
-      if (avgNs_ != 0L) {
-        output.writeInt64(2, avgNs_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-      }
-      if (avgNs_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, avgNs_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof org.anhonesteffort.trading.proto.TradingProto.Latency)) {
-        return super.equals(obj);
-      }
-      org.anhonesteffort.trading.proto.TradingProto.Latency other = (org.anhonesteffort.trading.proto.TradingProto.Latency) obj;
-
-      boolean result = true;
-      result = result && getName()
-          .equals(other.getName());
-      result = result && (getAvgNs()
-          == other.getAvgNs());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-      hash = (37 * hash) + AVGNS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getAvgNs());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static org.anhonesteffort.trading.proto.TradingProto.Latency parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.anhonesteffort.trading.proto.TradingProto.Latency parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.anhonesteffort.trading.proto.TradingProto.Latency parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.anhonesteffort.trading.proto.TradingProto.Latency parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.anhonesteffort.trading.proto.TradingProto.Latency parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static org.anhonesteffort.trading.proto.TradingProto.Latency parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static org.anhonesteffort.trading.proto.TradingProto.Latency parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static org.anhonesteffort.trading.proto.TradingProto.Latency parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static org.anhonesteffort.trading.proto.TradingProto.Latency parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static org.anhonesteffort.trading.proto.TradingProto.Latency parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(org.anhonesteffort.trading.proto.TradingProto.Latency prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code Latency}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Latency)
-        org.anhonesteffort.trading.proto.TradingProto.LatencyOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.anhonesteffort.trading.proto.TradingProto.internal_static_Latency_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.anhonesteffort.trading.proto.TradingProto.internal_static_Latency_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                org.anhonesteffort.trading.proto.TradingProto.Latency.class, org.anhonesteffort.trading.proto.TradingProto.Latency.Builder.class);
-      }
-
-      // Construct using org.anhonesteffort.trading.proto.TradingProto.Latency.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        name_ = "";
-
-        avgNs_ = 0L;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return org.anhonesteffort.trading.proto.TradingProto.internal_static_Latency_descriptor;
-      }
-
-      public org.anhonesteffort.trading.proto.TradingProto.Latency getDefaultInstanceForType() {
-        return org.anhonesteffort.trading.proto.TradingProto.Latency.getDefaultInstance();
-      }
-
-      public org.anhonesteffort.trading.proto.TradingProto.Latency build() {
-        org.anhonesteffort.trading.proto.TradingProto.Latency result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public org.anhonesteffort.trading.proto.TradingProto.Latency buildPartial() {
-        org.anhonesteffort.trading.proto.TradingProto.Latency result = new org.anhonesteffort.trading.proto.TradingProto.Latency(this);
-        result.name_ = name_;
-        result.avgNs_ = avgNs_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.anhonesteffort.trading.proto.TradingProto.Latency) {
-          return mergeFrom((org.anhonesteffort.trading.proto.TradingProto.Latency)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(org.anhonesteffort.trading.proto.TradingProto.Latency other) {
-        if (other == org.anhonesteffort.trading.proto.TradingProto.Latency.getDefaultInstance()) return this;
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
-        if (other.getAvgNs() != 0L) {
-          setAvgNs(other.getAvgNs());
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        org.anhonesteffort.trading.proto.TradingProto.Latency parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.anhonesteffort.trading.proto.TradingProto.Latency) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object name_ = "";
-      /**
-       * <code>optional string name = 1;</code>
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string name = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string name = 1;</code>
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string name = 1;</code>
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string name = 1;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
-      private long avgNs_ ;
-      /**
-       * <code>optional int64 avgNs = 2;</code>
-       */
-      public long getAvgNs() {
-        return avgNs_;
-      }
-      /**
-       * <code>optional int64 avgNs = 2;</code>
-       */
-      public Builder setAvgNs(long value) {
-        
-        avgNs_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int64 avgNs = 2;</code>
-       */
-      public Builder clearAvgNs() {
-        
-        avgNs_ = 0L;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Latency)
-    }
-
-    // @@protoc_insertion_point(class_scope:Latency)
-    private static final org.anhonesteffort.trading.proto.TradingProto.Latency DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new org.anhonesteffort.trading.proto.TradingProto.Latency();
-    }
-
-    public static org.anhonesteffort.trading.proto.TradingProto.Latency getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Latency>
-        PARSER = new com.google.protobuf.AbstractParser<Latency>() {
-      public Latency parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Latency(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Latency> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Latency> getParserForType() {
-      return PARSER;
-    }
-
-    public org.anhonesteffort.trading.proto.TradingProto.Latency getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_BaseMessage_descriptor;
   private static final 
@@ -3284,11 +2642,6 @@ public final class TradingProto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_OrderEvent_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Latency_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Latency_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3298,20 +2651,19 @@ public final class TradingProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rtrading.proto\"\262\001\n\013BaseMessage\022\037\n\004type\030" +
+      "\n\rtrading.proto\"\212\001\n\013BaseMessage\022\037\n\004type\030" +
       "\001 \001(\0162\021.BaseMessage.Type\022\025\n\005error\030\002 \001(\0132" +
       "\006.Error\022\037\n\norderEvent\030\003 \001(\0132\013.OrderEvent" +
-      "\022\031\n\007latency\030\004 \001(\0132\010.Latency\"/\n\004Type\022\t\n\005E" +
-      "RROR\020\000\022\017\n\013ORDER_EVENT\020\001\022\013\n\007LATENCY\020\002\"\030\n\005" +
-      "Error\022\017\n\007message\030\001 \001(\t\"\332\001\n\nOrderEvent\022\036\n" +
-      "\004type\030\001 \001(\0162\020.OrderEvent.Type\022\017\n\007orderId" +
-      "\030\002 \001(\t\022\036\n\004side\030\003 \001(\0162\020.OrderEvent.Side\022\r" +
-      "\n\005price\030\004 \001(\003\022\014\n\004size\030\005 \001(\003\"D\n\004Type\022\010\n\004O" +
-      "PEN\020\000\022\010\n\004TAKE\020\001\022\n\n\006REDUCE\020\002\022\016\n\nSYNC_STAR",
-      "T\020\003\022\014\n\010SYNC_END\020\004\"\030\n\004Side\022\007\n\003ASK\020\000\022\007\n\003BI" +
-      "D\020\001\"&\n\007Latency\022\014\n\004name\030\001 \001(\t\022\r\n\005avgNs\030\002 " +
-      "\001(\003B0\n org.anhonesteffort.trading.protoB" +
-      "\014TradingProtob\006proto3"
+      "\"\"\n\004Type\022\t\n\005ERROR\020\000\022\017\n\013ORDER_EVENT\020\001\"\030\n\005" +
+      "Error\022\017\n\007message\030\001 \001(\t\"\372\001\n\nOrderEvent\022\036\n" +
+      "\004type\030\001 \001(\0162\020.OrderEvent.Type\022\016\n\006timeMs\030" +
+      "\002 \001(\003\022\016\n\006timeNs\030\003 \001(\003\022\017\n\007orderId\030\004 \001(\t\022\036" +
+      "\n\004side\030\005 \001(\0162\020.OrderEvent.Side\022\r\n\005price\030" +
+      "\006 \001(\003\022\014\n\004size\030\007 \001(\003\"D\n\004Type\022\010\n\004OPEN\020\000\022\010\n" +
+      "\004TAKE\020\001\022\n\n\006REDUCE\020\002\022\016\n\nSYNC_START\020\003\022\014\n\010S",
+      "YNC_END\020\004\"\030\n\004Side\022\007\n\003ASK\020\000\022\007\n\003BID\020\001B0\n o" +
+      "rg.anhonesteffort.trading.protoB\014Trading" +
+      "Protob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3330,7 +2682,7 @@ public final class TradingProto {
     internal_static_BaseMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BaseMessage_descriptor,
-        new java.lang.String[] { "Type", "Error", "OrderEvent", "Latency", });
+        new java.lang.String[] { "Type", "Error", "OrderEvent", });
     internal_static_Error_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Error_fieldAccessorTable = new
@@ -3342,13 +2694,7 @@ public final class TradingProto {
     internal_static_OrderEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_OrderEvent_descriptor,
-        new java.lang.String[] { "Type", "OrderId", "Side", "Price", "Size", });
-    internal_static_Latency_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_Latency_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Latency_descriptor,
-        new java.lang.String[] { "Name", "AvgNs", });
+        new java.lang.String[] { "Type", "TimeMs", "TimeNs", "OrderId", "Side", "Price", "Size", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

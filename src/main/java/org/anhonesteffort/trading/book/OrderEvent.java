@@ -12,6 +12,8 @@ public class OrderEvent implements Externalizable {
   }
 
   protected Type type;
+  protected long timeMs;
+  protected long timeNs;
   protected String orderId;
   protected Order.Side side;
   protected long price;
@@ -19,40 +21,68 @@ public class OrderEvent implements Externalizable {
 
   public OrderEvent() { }
 
-  public OrderEvent(Type type, String orderId, Order.Side side, long price, long size) {
+  public OrderEvent(
+      Type type, long timeMs, long timeNs, String orderId, Order.Side side, long price, long size
+  ) {
     this.type    = type;
+    this.timeMs  = timeMs;
+    this.timeNs  = timeNs;
     this.orderId = orderId;
     this.side    = side;
     this.price   = price;
     this.size    = size;
   }
 
-  public static OrderEvent open(Order order) {
-    return new OrderEvent(Type.OPEN, order.getOrderId(), order.getSide(), order.getPrice(), order.getSize());
+  public static OrderEvent open(Order order, long timeNs) {
+    return new OrderEvent(
+        Type.OPEN, System.currentTimeMillis(), timeNs,
+        order.getOrderId(), order.getSide(), order.getPrice(), order.getSize()
+    );
   }
 
-  public static OrderEvent take(Order order) {
-    return new OrderEvent(Type.TAKE, order.getOrderId(), order.getSide(), order.getPrice(), order.getSize());
+  public static OrderEvent take(Order order, long timeNs) {
+    return new OrderEvent(
+        Type.TAKE, System.currentTimeMillis(), timeNs,
+        order.getOrderId(), order.getSide(), order.getPrice(), order.getSize()
+    );
   }
 
-  public static OrderEvent reduce(Order order, long reduceBy) {
-    return new OrderEvent(Type.REDUCE, order.getOrderId(), order.getSide(), order.getPrice(), reduceBy);
+  public static OrderEvent reduce(Order order, long reduceBy, long timeNs) {
+    return new OrderEvent(
+        Type.REDUCE, System.currentTimeMillis(), timeNs,
+        order.getOrderId(), order.getSide(), order.getPrice(), reduceBy
+    );
   }
 
-  public static OrderEvent cancel(Order order) {
-    return new OrderEvent(Type.REDUCE, order.getOrderId(), order.getSide(), order.getPrice(), order.getSize());
+  public static OrderEvent cancel(Order order, long timeNs) {
+    return new OrderEvent(
+        Type.REDUCE, System.currentTimeMillis(), timeNs,
+        order.getOrderId(), order.getSide(), order.getPrice(), order.getSize()
+    );
   }
 
-  public static OrderEvent syncStart() {
-    return new OrderEvent(Type.SYNC_START, "", Order.Side.ASK, -1l, -1l);
+  public static OrderEvent syncStart(long timeNs) {
+    return new OrderEvent(
+        Type.SYNC_START, System.currentTimeMillis(), timeNs, "", Order.Side.ASK, -1l, -1l
+    );
   }
 
-  public static OrderEvent syncEnd() {
-    return new OrderEvent(Type.SYNC_END, "", Order.Side.ASK, -1l, -1l);
+  public static OrderEvent syncEnd(long timeNs) {
+    return new OrderEvent(
+        Type.SYNC_END, System.currentTimeMillis(), timeNs, "", Order.Side.ASK, -1l, -1l
+    );
   }
 
   public Type getType() {
     return type;
+  }
+
+  public long getTimeMs() {
+    return timeMs;
+  }
+
+  public long getTimeNs() {
+    return timeNs;
   }
 
   public String getOrderId() {
@@ -95,6 +125,8 @@ public class OrderEvent implements Externalizable {
         break;
     }
 
+    out.writeLong(timeMs);
+    out.writeLong(timeNs);
     out.writeUTF(orderId);
     out.writeInt(side == Order.Side.ASK ? 0 : 1);
     out.writeLong(price);
@@ -125,6 +157,8 @@ public class OrderEvent implements Externalizable {
         break;
     }
 
+    timeMs  = in.readLong();
+    timeNs  = in.readLong();
     orderId = in.readUTF();
     side    = (in.readInt() == 0) ? Order.Side.ASK : Order.Side.BID;
     price   = in.readLong();

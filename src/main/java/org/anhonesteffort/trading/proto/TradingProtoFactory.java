@@ -59,19 +59,14 @@ public class TradingProtoFactory {
         .setType(BaseMessage.Type.ORDER_EVENT)
         .setOrderEvent(TradingProto.OrderEvent.newBuilder()
                 .setType(typeFor(event.getType()))
+                .setTimeMs(event.getTimeMs())
+                .setTimeNs(event.getTimeNs())
                 .setOrderId(event.getOrderId())
                 .setSide(sideFor(event.getSide()))
                 .setPrice(event.getPrice())
                 .setSize(event.getSize())
                 .build()
         ).build();
-  }
-
-  public BaseMessage latency(String name, Long nanoseconds) {
-    return BaseMessage.newBuilder()
-        .setType(BaseMessage.Type.LATENCY)
-        .setLatency(TradingProto.Latency.newBuilder().setName(name).setAvgNs(nanoseconds))
-        .build();
   }
 
 }
