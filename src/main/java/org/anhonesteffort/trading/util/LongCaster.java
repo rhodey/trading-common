@@ -27,6 +27,10 @@ public class LongCaster {
     this.accuracy  = accuracy;
   }
 
+  public LongCaster(double accuracy) {
+    this(0.000000000001d, accuracy);
+  }
+
   public long fromDouble(double value) {
     return (long) (value / precision);
   }
