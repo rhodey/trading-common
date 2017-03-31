@@ -21,35 +21,35 @@ public class BaseTest {
 
   private Integer nextOrderId = 0;
 
-  protected Order newAsk(String orderId, long price, long size) {
+  protected Order newAsk(String orderId, double price, double size) {
     return new Order(orderId, Order.Side.ASK, price, size);
   }
 
-  protected Order newAsk(long price, long size) {
+  protected Order newAsk(double price, double size) {
     return newAsk((nextOrderId++).toString(), price, size);
   }
 
-  protected MarketOrder newMarketAsk(String orderId, long size, long funds) {
+  protected MarketOrder newMarketAsk(String orderId, double size, double funds) {
     return new MarketOrder(orderId, Order.Side.ASK, size, funds);
   }
 
-  protected MarketOrder newMarketAsk(long size, long funds) {
+  protected MarketOrder newMarketAsk(double size, double funds) {
     return newMarketAsk((nextOrderId++).toString(), size, funds);
   }
 
-  protected Order newBid(String orderId, long price, long size) {
+  protected Order newBid(String orderId, double price, double size) {
     return new Order(orderId, Order.Side.BID, price, size);
   }
 
-  protected Order newBid(long price, long size) {
+  protected Order newBid(double price, double size) {
     return newBid((nextOrderId++).toString(), price, size);
   }
 
-  protected MarketOrder newMarketBid(String orderId, long size, long funds) {
+  protected MarketOrder newMarketBid(String orderId, double size, double funds) {
     return new MarketOrder(orderId, Order.Side.BID, size, funds);
   }
 
-  protected MarketOrder newMarketBid(long size, long funds) {
+  protected MarketOrder newMarketBid(double size, double funds) {
     return newMarketBid((nextOrderId++).toString(), size, funds);
   }
 

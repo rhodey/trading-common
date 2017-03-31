@@ -28,9 +28,9 @@ public class LimitOrderBookTest extends BaseTest {
     BOOK.add(newAsk("00", 10, 20));
     BOOK.add(newAsk("01", 30, 40));
 
-    assert BOOK.remove(Order.Side.ASK, 10l, "00").isPresent();
+    assert BOOK.remove(Order.Side.ASK, 10d, "00").isPresent();
     BOOK.clear();
-    assert !BOOK.remove(Order.Side.ASK, 30l, "01").isPresent();
+    assert !BOOK.remove(Order.Side.ASK, 30d, "01").isPresent();
   }
 
   @Test
@@ -40,9 +40,9 @@ public class LimitOrderBookTest extends BaseTest {
     BOOK.add(newBid("00", 10, 20));
     BOOK.add(newBid("01", 30, 40));
 
-    assert BOOK.remove(Order.Side.BID, 10l, "00").isPresent();
+    assert BOOK.remove(Order.Side.BID, 10d, "00").isPresent();
     BOOK.clear();
-    assert !BOOK.remove(Order.Side.BID, 30l, "01").isPresent();
+    assert !BOOK.remove(Order.Side.BID, 30d, "01").isPresent();
   }
 
   @Test
@@ -75,8 +75,8 @@ public class LimitOrderBookTest extends BaseTest {
     assert RESULT.getTakeValue()     == 0;
     assert RESULT.getMakers().size() == 0;
 
-    assert !BOOK.remove(Order.Side.ASK, 10l, "00").isPresent();
-    assert !BOOK.remove(Order.Side.ASK, 20l, "00").isPresent();
+    assert !BOOK.remove(Order.Side.ASK, 10d, "00").isPresent();
+    assert !BOOK.remove(Order.Side.ASK, 20d, "00").isPresent();
   }
 
   @Test
@@ -89,8 +89,8 @@ public class LimitOrderBookTest extends BaseTest {
     assert RESULT.getTakeValue()     == 0;
     assert RESULT.getMakers().size() == 0;
 
-    assert !BOOK.remove(Order.Side.BID, 10l, "00").isPresent();
-    assert !BOOK.remove(Order.Side.BID, 20l, "00").isPresent();
+    assert !BOOK.remove(Order.Side.BID, 10d, "00").isPresent();
+    assert !BOOK.remove(Order.Side.BID, 20d, "00").isPresent();
   }
 
   @Test

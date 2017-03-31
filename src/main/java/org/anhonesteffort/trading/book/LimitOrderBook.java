@@ -18,7 +18,7 @@
 package org.anhonesteffort.trading.book;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public class LimitOrderBook {
@@ -39,9 +39,9 @@ public class LimitOrderBook {
     return bidLimits;
   }
 
-  private Collection<Order> processAsk(Order ask) {
-    Collection<Order> makers = new ArrayList<>();
-    Collection<Order> next   = bidLimits.takeLiquidityFromBestLimit(ask);
+  private List<Order> processAsk(Order ask) {
+    List<Order> makers = new ArrayList<>();
+    List<Order> next   = bidLimits.takeLiquidityFromBestLimit(ask);
 
     while (!next.isEmpty()) {
       makers.addAll(next);
@@ -55,9 +55,9 @@ public class LimitOrderBook {
     return makers;
   }
 
-  private Collection<Order> processBid(Order bid) {
-    Collection<Order> makers = new ArrayList<>();
-    Collection<Order> next   = askLimits.takeLiquidityFromBestLimit(bid);
+  private List<Order> processBid(Order bid) {
+    List<Order> makers = new ArrayList<>();
+    List<Order> next   = askLimits.takeLiquidityFromBestLimit(bid);
 
     while (!next.isEmpty()) {
       makers.addAll(next);
@@ -71,7 +71,7 @@ public class LimitOrderBook {
     return makers;
   }
 
-  private TakeResult resultFor(Order taker, Collection<Order> makers, double takeSize) {
+  private TakeResult resultFor(Order taker, List<Order> makers, double takeSize) {
     if (!(taker instanceof MarketOrder)) {
       return new TakeResult(taker, makers, (takeSize - taker.getSizeRemaining()));
     } else {
@@ -80,8 +80,8 @@ public class LimitOrderBook {
   }
 
   public TakeResult add(Order taker) {
-    double            takeSize = taker.getSizeRemaining();
-    Collection<Order> makers   = null;
+    double      takeSize = taker.getSizeRemaining();
+    List<Order> makers   = null;
 
     if (taker.getSide().equals(Order.Side.ASK)) {
       makers = processAsk(taker);

@@ -23,11 +23,11 @@ import java.util.List;
 
 public class LimitTest extends BaseTest {
 
-  private Order newOrder(String orderId, long size) {
+  private Order newOrder(String orderId, double size) {
     return newBid(orderId, 1020, size);
   }
 
-  private MarketOrder newMarketOrder(String orderId, long size, long funds) {
+  private MarketOrder newMarketOrder(String orderId, double size, double funds) {
     return newMarketBid(orderId, size, funds);
   }
 

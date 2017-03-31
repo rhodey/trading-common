@@ -17,16 +17,16 @@
 
 package org.anhonesteffort.trading.book;
 
-import java.util.Collection;
+import java.util.List;
 
 public class TakeResult {
 
   private final Order taker;
-  private final Collection<Order> makers;
+  private final List<Order> makers;
   private final double takeSize;
   private final double takeValue;
 
-  public TakeResult(Order taker, Collection<Order> makers, double takeSize) {
+  public TakeResult(Order taker, List<Order> makers, double takeSize) {
     this.taker     = taker;
     this.makers    = makers;
     this.takeSize  = takeSize;
@@ -37,7 +37,7 @@ public class TakeResult {
     return taker;
   }
 
-  public Collection<Order> getMakers() {
+  public List<Order> getMakers() {
     return makers;
   }
 

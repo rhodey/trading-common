@@ -37,19 +37,19 @@ public class LimitQueueTest extends BaseTest {
     assert BEST_ASK.isPresent();
     assert BEST_ASK.get().getPrice()  == 5;
     assert BEST_ASK.get().getVolume() == 2;
-    assert ASKS.removeOrder(5l, "03").isPresent();
+    assert ASKS.removeOrder(5d, "03").isPresent();
 
     BEST_ASK = ASKS.peek();
     assert BEST_ASK.isPresent();
     assert BEST_ASK.get().getPrice()  == 10;
     assert BEST_ASK.get().getVolume() ==  3;
-    assert ASKS.removeOrder(10l, "01").isPresent();
+    assert ASKS.removeOrder(10d, "01").isPresent();
 
     BEST_ASK = ASKS.peek();
     assert BEST_ASK.isPresent();
     assert BEST_ASK.get().getPrice()  == 10;
     assert BEST_ASK.get().getVolume() ==  1;
-    assert ASKS.removeOrder(20l, "02").isPresent();
+    assert ASKS.removeOrder(20d, "02").isPresent();
 
     BEST_ASK = ASKS.peek();
     assert BEST_ASK.isPresent();
@@ -57,7 +57,7 @@ public class LimitQueueTest extends BaseTest {
     assert BEST_ASK.get().getVolume() ==  1;
 
     ASKS.clear();
-    assert !ASKS.removeOrder(10l, "00").isPresent();
+    assert !ASKS.removeOrder(10d, "00").isPresent();
     assert !ASKS.peek().isPresent();
   }
 
@@ -74,19 +74,19 @@ public class LimitQueueTest extends BaseTest {
     assert BEST_BID.isPresent();
     assert BEST_BID.get().getPrice()  == 20;
     assert BEST_BID.get().getVolume() ==  2;
-    assert BIDS.removeOrder(20l, "02").isPresent();
+    assert BIDS.removeOrder(20d, "02").isPresent();
 
     BEST_BID = BIDS.peek();
     assert BEST_BID.isPresent();
     assert BEST_BID.get().getPrice()  == 10;
     assert BEST_BID.get().getVolume() ==  3;
-    assert BIDS.removeOrder(10l, "01").isPresent();
+    assert BIDS.removeOrder(10d, "01").isPresent();
 
     BEST_BID = BIDS.peek();
     assert BEST_BID.isPresent();
     assert BEST_BID.get().getPrice()  == 10;
     assert BEST_BID.get().getVolume() ==  1;
-    assert BIDS.removeOrder(10l, "00").isPresent();
+    assert BIDS.removeOrder(10d, "00").isPresent();
 
     BEST_BID = BIDS.peek();
     assert BEST_BID.isPresent();
@@ -94,7 +94,7 @@ public class LimitQueueTest extends BaseTest {
     assert BEST_BID.get().getVolume() == 2;
 
     BIDS.clear();
-    assert !BIDS.removeOrder(5l, "03").isPresent();
+    assert !BIDS.removeOrder(5d, "03").isPresent();
     assert !BIDS.peek().isPresent();
   }
 

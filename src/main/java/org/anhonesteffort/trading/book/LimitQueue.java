@@ -17,10 +17,10 @@
 
 package org.anhonesteffort.trading.book;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.PriorityQueue;
@@ -97,10 +97,10 @@ public class LimitQueue {
     }
   }
 
-  public Collection<Order> takeLiquidityFromBestLimit(Order taker) {
+  public List<Order> takeLiquidityFromBestLimit(Order taker) {
     Optional<Limit> maker = peek();
     if (maker.isPresent() && isTaken(maker.get(), taker)) {
-      Collection<Order> makers = maker.get().takeLiquidity(taker);
+      List<Order> makers = maker.get().takeLiquidity(taker);
 
       if (makers.size() > 0 && !maker.get().peek().isPresent()) {
         map.remove(maker.get().getPrice());

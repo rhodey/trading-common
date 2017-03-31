@@ -19,8 +19,8 @@ package org.anhonesteffort.trading.book;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Queue;
@@ -102,10 +102,10 @@ public class Limit {
     return maker;
   }
 
-  public Collection<Order> takeLiquidity(Order taker) {
-    Collection<Order> makers   = new ArrayList<>();
-    double            takeSize = getTakeSize(taker);
-    Optional<Order>   maker    = null;
+  public List<Order> takeLiquidity(Order taker) {
+    List<Order>     makers   = new ArrayList<>();
+    double          takeSize = getTakeSize(taker);
+    Optional<Order> maker    = null;
 
     while (takeSize > 0d) {
       maker = takeLiquidityFromNextMaker(taker, takeSize);
