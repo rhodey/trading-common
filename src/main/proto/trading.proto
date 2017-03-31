@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option java_package         = "org.anhonesteffort.trading.proto";
+option java_outer_classname = "TradingProto";
+
+message BaseMessage {
+  enum Type {
+    ERROR       = 0;
+    ORDER_EVENT = 1;
+  }
+
+  Type       type       = 1;
+  Error      error      = 2;
+  OrderEvent orderEvent = 3;
+}
+
+message Error {
+  string message = 1;
+}
+
+message OrderEvent {
+  enum Type {
+    OPEN       = 0;
+    TAKE       = 1;
+    REDUCE     = 2;
+    SYNC_START = 3;
+    SYNC_END   = 4;
+  }
+
+  enum Side {
+    ASK = 0;
+    BID = 1;
+  }
+
+  Type   type    = 1;
+  int64  timeMs  = 2;
+  int64  timeNs  = 3;
+  string orderId = 4;
+  Side   side    = 5;
+  double price   = 6;
+  double size    = 7;
+}
