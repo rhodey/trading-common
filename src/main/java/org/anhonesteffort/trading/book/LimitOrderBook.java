@@ -17,8 +17,8 @@
 
 package org.anhonesteffort.trading.book;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 
 public class LimitOrderBook {
@@ -31,38 +31,6 @@ public class LimitOrderBook {
     bidLimits = new LimitQueue(Order.Side.BID, initLimitSize);
   }
 
-  private List<Order> processAsk(Order ask) {
-    List<Order> makers = new LinkedList<>();
-    List<Order> next   = bidLimits.takeLiquidityFromBestLimit(ask);
-
-    while (!next.isEmpty()) {
-      makers.addAll(next);
-      next = bidLimits.takeLiquidityFromBestLimit(ask);
-    }
-
-    if (ask.getSizeRemaining() > 0l && !(ask instanceof MarketOrder)) {
-      askLimits.addOrder(ask);
-    }
-
-    return makers;
-  }
-
-  private List<Order> processBid(Order bid) {
-    List<Order> makers = new LinkedList<>();
-    List<Order> next   = askLimits.takeLiquidityFromBestLimit(bid);
-
-    while (!next.isEmpty()) {
-      makers.addAll(next);
-      next = askLimits.takeLiquidityFromBestLimit(bid);
-    }
-
-    if (bid.getSizeRemaining() > 0l && !(bid instanceof MarketOrder)) {
-      bidLimits.addOrder(bid);
-    }
-
-    return makers;
-  }
-
   public LimitQueue getAskLimits() {
     return askLimits;
   }
@@ -71,7 +39,39 @@ public class LimitOrderBook {
     return bidLimits;
   }
 
-  private TakeResult resultFor(Order taker, List<Order> makers, long takeSize) {
+  private Collection<Order> processAsk(Order ask) {
+    Collection<Order> makers = new ArrayList<>();
+    Collection<Order> next   = bidLimits.takeLiquidityFromBestLimit(ask);
+
+    while (!next.isEmpty()) {
+      makers.addAll(next);
+      next = bidLimits.takeLiquidityFromBestLimit(ask);
+    }
+
+    if (ask.getSizeRemaining() > 0d && !(ask instanceof MarketOrder)) {
+      askLimits.addOrder(ask);
+    }
+
+    return makers;
+  }
+
+  private Collection<Order> processBid(Order bid) {
+    Collection<Order> makers = new ArrayList<>();
+    Collection<Order> next   = askLimits.takeLiquidityFromBestLimit(bid);
+
+    while (!next.isEmpty()) {
+      makers.addAll(next);
+      next = askLimits.takeLiquidityFromBestLimit(bid);
+    }
+
+    if (bid.getSizeRemaining() > 0d && !(bid instanceof MarketOrder)) {
+      bidLimits.addOrder(bid);
+    }
+
+    return makers;
+  }
+
+  private TakeResult resultFor(Order taker, Collection<Order> makers, double takeSize) {
     if (!(taker instanceof MarketOrder)) {
       return new TakeResult(taker, makers, (takeSize - taker.getSizeRemaining()));
     } else {
@@ -80,8 +80,8 @@ public class LimitOrderBook {
   }
 
   public TakeResult add(Order taker) {
-    long        takeSize = taker.getSizeRemaining();
-    List<Order> makers   = null;
+    double            takeSize = taker.getSizeRemaining();
+    Collection<Order> makers   = null;
 
     if (taker.getSide().equals(Order.Side.ASK)) {
       makers = processAsk(taker);
@@ -92,7 +92,7 @@ public class LimitOrderBook {
     return resultFor(taker, makers, takeSize);
   }
 
-  public Optional<Order> remove(Order.Side side, Long price, String orderId) {
+  public Optional<Order> remove(Order.Side side, Double price, String orderId) {
     if (side.equals(Order.Side.ASK)) {
       return askLimits.removeOrder(price, orderId);
     } else {
@@ -100,7 +100,7 @@ public class LimitOrderBook {
     }
   }
 
-  public Optional<Order> reduce(Order.Side side, Long price, String orderId, long size) {
+  public Optional<Order> reduce(Order.Side side, Double price, String orderId, double size) {
     if (side.equals(Order.Side.ASK)) {
       return askLimits.reduceOrder(price, orderId, size);
     } else {

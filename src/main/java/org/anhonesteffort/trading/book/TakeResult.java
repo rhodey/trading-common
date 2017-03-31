@@ -17,35 +17,35 @@
 
 package org.anhonesteffort.trading.book;
 
-import java.util.List;
+import java.util.Collection;
 
 public class TakeResult {
 
   private final Order taker;
-  private final List<Order> makers;
-  private final long takeSize;
-  private final long takeValue;
+  private final Collection<Order> makers;
+  private final double takeSize;
+  private final double takeValue;
 
-  public TakeResult(Order taker, List<Order> makers, long takeSize) {
+  public TakeResult(Order taker, Collection<Order> makers, double takeSize) {
     this.taker     = taker;
     this.makers    = makers;
     this.takeSize  = takeSize;
-    this.takeValue = makers.stream().mapToLong(Order::getValueRemoved).sum();
+    this.takeValue = makers.stream().mapToDouble(Order::getValueRemoved).sum();
   }
 
   public Order getTaker() {
     return taker;
   }
 
-  public List<Order> getMakers() {
+  public Collection<Order> getMakers() {
     return makers;
   }
 
-  public long getTakeSize() {
+  public double getTakeSize() {
     return takeSize;
   }
 
-  public long getTakeValue() {
+  public double getTakeValue() {
     return takeValue;
   }
 

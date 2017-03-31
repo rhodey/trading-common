@@ -19,47 +19,47 @@ package org.anhonesteffort.trading.book;
 
 public class MarketOrder extends Order {
 
-  private final long funds;
-  private       long fundsRemaining;
-  private       long volumeRemoved;
+  private final double funds;
+  private       double fundsRemaining;
+  private       double volumeRemoved;
 
-  public MarketOrder(String orderId, Side side, long size, long funds) {
-    super(orderId, side, 0l, size);
+  public MarketOrder(String orderId, Side side, double size, double funds) {
+    super(orderId, side, 0d, size);
     this.funds          = funds;
     this.fundsRemaining = funds;
-    volumeRemoved       = 0l;
+    volumeRemoved       = 0d;
   }
 
-  public long getFunds() {
+  public double getFunds() {
     return funds;
   }
 
-  public long getFundsRemaining() {
+  public double getFundsRemaining() {
     return fundsRemaining;
   }
 
-  public long getVolumeRemoved() {
+  public double getVolumeRemoved() {
     return volumeRemoved;
   }
 
   @Override
-  protected void subtract(long size, long price) {
+  protected void subtract(double size, double price) {
     super.subtract(size, price);
     fundsRemaining -= (price * size);
     volumeRemoved  += size;
   }
 
-  public long getSizeRemainingFor(long price) {
-    long fundsTakeSize = fundsRemaining / price;
+  public double getSizeRemainingFor(double price) {
+    double fundsTakeSize = fundsRemaining / price;
 
-    if (funds > 0l && size > 0l) {
+    if (funds > 0d && size > 0d) {
       return Math.min(fundsTakeSize, sizeRemaining);
-    } else if (funds > 0l) {
+    } else if (funds > 0d) {
       return fundsTakeSize;
-    } else if (size > 0l) {
+    } else if (size > 0d) {
       return sizeRemaining;
     } else {
-      return 0l;
+      return 0d;
     }
   }
 

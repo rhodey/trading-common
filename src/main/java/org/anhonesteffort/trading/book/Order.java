@@ -23,18 +23,18 @@ public class Order {
 
   protected final String orderId;
   protected final Side   side;
-  protected final long   price;
-  protected final long   size;
-  protected       long   sizeRemaining;
-  protected       long   valueRemoved;
+  protected final double price;
+  protected final double size;
+  protected       double sizeRemaining;
+  protected       double valueRemoved;
 
-  public Order(String orderId, Side side, long price, long size) {
+  public Order(String orderId, Side side, double price, double size) {
     this.orderId       = orderId;
     this.side          = side;
     this.price         = price;
     this.size          = size;
     this.sizeRemaining = size;
-    this.valueRemoved  = 0l;
+    this.valueRemoved  = 0d;
   }
 
   public String getOrderId() {
@@ -45,32 +45,32 @@ public class Order {
     return side;
   }
 
-  public long getPrice() {
+  public double getPrice() {
     return price;
   }
 
-  public long getSize() {
+  public double getSize() {
     return size;
   }
 
-  public long getSizeRemaining() {
+  public double getSizeRemaining() {
     return sizeRemaining;
   }
 
-  public long getValueRemoved() {
+  public double getValueRemoved() {
     return valueRemoved;
   }
 
   public void clearValueRemoved() {
-    this.valueRemoved = 0l;
+    this.valueRemoved = 0d;
   }
 
-  protected void subtract(long size, long price) {
+  protected void subtract(double size, double price) {
     sizeRemaining -= size;
   }
 
-  public long takeSize(long size) {
-    long taken     = Math.min(size, sizeRemaining);
+  public double takeSize(double size) {
+    double taken   = Math.min(size, sizeRemaining);
     sizeRemaining -= taken;
     valueRemoved  += price * taken;
     return taken;

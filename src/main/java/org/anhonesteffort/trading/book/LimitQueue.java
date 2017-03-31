@@ -17,10 +17,10 @@
 
 package org.anhonesteffort.trading.book;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.PriorityQueue;
@@ -28,7 +28,7 @@ import java.util.Queue;
 
 public class LimitQueue {
 
-  private final Map<Long, Limit> map = new HashMap<>();
+  private final Map<Double, Limit> map = new HashMap<>();
   private final Queue<Limit> queue;
   private final int initLimitSize;
 
@@ -57,7 +57,7 @@ public class LimitQueue {
     limit.add(order);
   }
 
-  public Optional<Order> removeOrder(Long price, String orderId) {
+  public Optional<Order> removeOrder(Double price, String orderId) {
     Optional<Order> order = Optional.empty();
     Optional<Limit> limit = Optional.ofNullable(map.get(price));
 
@@ -72,7 +72,7 @@ public class LimitQueue {
     return order;
   }
 
-  public Optional<Order> reduceOrder(Long price, String orderId, long size) {
+  public Optional<Order> reduceOrder(Double price, String orderId, double size) {
     Optional<Order> order = Optional.empty();
     Optional<Limit> limit = Optional.ofNullable(map.get(price));
 
@@ -89,7 +89,7 @@ public class LimitQueue {
 
   private boolean isTaken(Limit maker, Order taker) {
     if (taker instanceof MarketOrder) {
-      return ((MarketOrder) taker).getSizeRemainingFor(maker.getPrice()) > 0l;
+      return ((MarketOrder) taker).getSizeRemainingFor(maker.getPrice()) > 0d;
     } else if (taker.getSide().equals(Order.Side.BID)) {
       return taker.getPrice() >= maker.getPrice();
     } else {
@@ -97,10 +97,10 @@ public class LimitQueue {
     }
   }
 
-  public List<Order> takeLiquidityFromBestLimit(Order taker) {
+  public Collection<Order> takeLiquidityFromBestLimit(Order taker) {
     Optional<Limit> maker = peek();
     if (maker.isPresent() && isTaken(maker.get(), taker)) {
-      List<Order> makers = maker.get().takeLiquidity(taker);
+      Collection<Order> makers = maker.get().takeLiquidity(taker);
 
       if (makers.size() > 0 && !maker.get().peek().isPresent()) {
         map.remove(maker.get().getPrice());
@@ -109,7 +109,7 @@ public class LimitQueue {
 
       return makers;
     } else {
-      return new LinkedList<>();
+      return Collections.emptyList();
     }
   }
 

@@ -18,9 +18,9 @@
 package org.anhonesteffort.trading.book;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Queue;
@@ -29,20 +29,20 @@ public class Limit {
 
   private final Map<String, Order> orderMap = new HashMap<>();
   private final Queue<Order> orderQueue;
-  private final long price;
-  private long volume;
+  private final double price;
+  private double volume;
 
-  public Limit(long price, int initSize) {
+  public Limit(double price, int initSize) {
     orderQueue  = new ArrayDeque<>(initSize);
     this.price  = price;
-    this.volume = 0l;
+    this.volume = 0d;
   }
 
-  public long getPrice() {
+  public double getPrice() {
     return price;
   }
 
-  public long getVolume() {
+  public double getVolume() {
     return volume;
   }
 
@@ -65,12 +65,12 @@ public class Limit {
     return order;
   }
 
-  public Optional<Order> reduce(String orderId, long size) {
+  public Optional<Order> reduce(String orderId, double size) {
     Optional<Order> order = Optional.ofNullable(orderMap.get(orderId));
     if (order.isPresent()) {
       order.get().subtract(size, price);
       volume -= size;
-      if (order.get().getSizeRemaining() <= 0l) {
+      if (order.get().getSizeRemaining() <= 0d) {
         orderMap.remove(orderId);
         orderQueue.remove(order.get());
       }
@@ -78,7 +78,7 @@ public class Limit {
     return order;
   }
 
-  private long getTakeSize(Order taker) {
+  private double getTakeSize(Order taker) {
     if (taker instanceof MarketOrder) {
       return ((MarketOrder) taker).getSizeRemainingFor(price);
     } else {
@@ -86,12 +86,12 @@ public class Limit {
     }
   }
 
-  private Optional<Order> takeLiquidityFromNextMaker(Order taker, long takeSize) {
+  private Optional<Order> takeLiquidityFromNextMaker(Order taker, double takeSize) {
     Optional<Order> maker = Optional.ofNullable(orderQueue.peek());
     if (maker.isPresent()) {
-      long volumeRemoved = maker.get().takeSize(takeSize);
+      double volumeRemoved = maker.get().takeSize(takeSize);
 
-      if (maker.get().getSizeRemaining() <= 0l) {
+      if (maker.get().getSizeRemaining() <= 0d) {
         orderMap.remove(maker.get().getOrderId());
         orderQueue.remove();
       }
@@ -102,12 +102,12 @@ public class Limit {
     return maker;
   }
 
-  public List<Order> takeLiquidity(Order taker) {
-    List<Order>     makers   = new LinkedList<>();
-    long            takeSize = getTakeSize(taker);
-    Optional<Order> maker    = null;
+  public Collection<Order> takeLiquidity(Order taker) {
+    Collection<Order> makers   = new ArrayList<>();
+    double            takeSize = getTakeSize(taker);
+    Optional<Order>   maker    = null;
 
-    while (takeSize > 0l) {
+    while (takeSize > 0d) {
       maker = takeLiquidityFromNextMaker(taker, takeSize);
       if (maker.isPresent()) {
         makers.add(maker.get());
@@ -123,7 +123,7 @@ public class Limit {
   public void clear() {
     orderQueue.clear();
     orderMap.clear();
-    volume = 0l;
+    volume = 0d;
   }
 
 }
